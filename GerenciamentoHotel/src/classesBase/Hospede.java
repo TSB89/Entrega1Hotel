@@ -20,4 +20,44 @@ public class Hospede extends Pessoa {
         this.historico = new ArrayList<>();
         this.reserva = reserva;
     }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
+    }
+
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<Historico> getHistorico() {
+        return historico;
+    }
+
+    public void adicionarHistorico(Historico historico) {
+        this.historico.add(historico);
+    }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
 }
