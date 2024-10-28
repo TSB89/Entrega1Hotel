@@ -12,13 +12,12 @@ public class Hospede extends Pessoa {
     private Reserva reserva;
     private List<Historico> historico;
 
-    public Hospede(String cpf, String nome, String contato, LocalDate dataDeNascimento, String endereco, Reserva reserva) {
+    public Hospede(String cpf, String nome, String contato, LocalDate dataDeNascimento, String endereco) {
         super(cpf, nome);
         this.contato = contato;
         this.dataDeNascimento = dataDeNascimento;
         this.endereco = endereco;
         this.historico = new ArrayList<>();
-        this.reserva = reserva;
     }
 
     public String getContato() {
