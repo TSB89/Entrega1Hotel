@@ -9,5 +9,37 @@ public class Reserva {
     private LocalDate saida;
     private String tipoDoQuarto;
     private int quantidadeDeHospedes;
+	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes) {
+		this.entrada = entrada;
+		this.saida = saida;
+		this.tipoDoQuarto = tipoDoQuarto;
+		this.quantidadeDeHospedes = quantidadeDeHospedes;
+	}
+	public LocalDate getEntrada() {
+		return entrada;
+	}
+	public void setEntrada(LocalDate entrada) {
+		this.entrada = entrada;
+	}
+	public LocalDate getSaida() {
+		return saida;
+	}
+	public void setSaida(LocalDate saida) {
+		this.saida = saida;
+	}
+	public String getTipoDoQuarto() {
+		return tipoDoQuarto;
+	}
+	public void setTipoDoQuarto(String tipoDoQuarto) {
+		this.tipoDoQuarto = tipoDoQuarto;
+	}
+	public int getQuantidadeDeHospedes() {
+		return quantidadeDeHospedes;
+	}
+	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
+		this.quantidadeDeHospedes = quantidadeDeHospedes;
+	}
+    
+    
 
 }
