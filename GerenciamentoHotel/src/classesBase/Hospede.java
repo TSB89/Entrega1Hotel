@@ -1,6 +1,7 @@
 package classesBase;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +59,16 @@ public class Hospede extends Pessoa {
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = getDataDeNascimento().format(formatarData);
+        return "\nNome: " + getNome() +
+                "\nCpf: " + getCpf() +
+                "\nData de nascimento: " + data +
+                "\nContato: " + getContato() +
+                "\nEndereço: " + getEndereco() + "\n";
     }
 }
