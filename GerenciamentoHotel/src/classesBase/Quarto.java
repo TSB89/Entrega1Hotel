@@ -35,6 +35,9 @@ public class Quarto {
     public void atualizarStatus(boolean disponivel) {
         this.disponivel = disponivel;
     }
+    public void setDisponivel(boolean disponivel) {
+    	this.disponivel = disponivel;
+    }
 
     public boolean isDisponivel() {
         return disponivel;
