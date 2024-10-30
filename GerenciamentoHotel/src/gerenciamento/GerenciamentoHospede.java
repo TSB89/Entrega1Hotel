@@ -1,6 +1,7 @@
 package gerenciamento;
 
 import classesBase.Hospede;
+import classesBase.Reserva;
 import interfaces.GerenciamentoPadrao;
 
 import java.time.DateTimeException;
@@ -15,8 +16,8 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
 
     private List<Hospede> hospedes;
 
-    public GerenciamentoHospede() {
-        this.hospedes = new ArrayList<>();
+    public GerenciamentoHospede(List<Hospede>hospedes) {
+        this.hospedes = hospedes;
     }
 
     Scanner input = new Scanner(System.in);
@@ -34,7 +35,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
         boolean dataValida = false;
         while (!dataValida) {
             try {
-                System.out.println("\nInsira a data de nascimento do hospede (DD/MM/AAAA) digite a barra também (/)::");
+                System.out.println("\nInsira a data de nascimento do hospede (DD/MM/AAAA) digite a barra também (/):");
                 String data = input.nextLine();
                 dataNascimento = LocalDate.parse(data,formatarData);
                 dataValida = true;
@@ -153,15 +154,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
         }
     }
 
-    public void visualizarHistorico() {
-
-    }
-
-    public void adicionarReserva() {
-
-    }
-
-    public void retirarReserva(){
-
+    public List<Hospede> getHospedes () {
+        return hospedes;
     }
 }
