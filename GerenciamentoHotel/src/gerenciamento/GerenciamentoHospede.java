@@ -158,7 +158,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
 
     @Override
     public void visualizar() {
-        System.out.println("\nEscolha uma opção:");
+        System.out.println("\nEscolha uma opção:\n");
         System.out.println("1) Listar Todos os Hóspedes Cadastrados");
         System.out.println("2) Visualizar Hóspede Específico");
 
