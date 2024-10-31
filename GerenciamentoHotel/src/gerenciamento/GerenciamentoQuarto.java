@@ -11,8 +11,8 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
 
     private List<Quarto> quartos;
 
-    public GerenciamentoQuarto() {
-        this.quartos = new ArrayList<>();
+    public GerenciamentoQuarto(List<Quarto>quartos) {
+        this.quartos = quartos;
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -132,9 +132,9 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
     public void visualizar() {
         System.out.println("\nQuartos disponíveis para reserva:");
         for (Quarto quarto : quartos) {
-            if (quarto.isDisponivel()) {
+
                 System.out.println(quarto);
-            }
+
         }
     }
 
@@ -187,11 +187,11 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
 
                     switch (opcao) {
                         case 1 -> {
-                            quarto.atualizarStatus(true);
+                            quarto.setDisponivel(true);
                             entradaValida = true;
                         }
                         case 2, 3 -> {
-                            quarto.atualizarStatus(false);
+                            quarto.setDisponivel(false);
                             entradaValida = true;
                         }
                         default -> {
@@ -203,5 +203,9 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
                 break;
             }
         }
+    }
+
+    public List<Quarto> getQuartos () {
+        return quartos;
     }
 }

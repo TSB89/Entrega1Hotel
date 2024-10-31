@@ -11,8 +11,8 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 
     private List<Funcionario> funcionarios;
 
-    public GerenciamentoFuncionario() {
-        this.funcionarios = new ArrayList<>();
+    public GerenciamentoFuncionario(List<Funcionario>funcionarios) {
+        this.funcionarios = funcionarios;
     }
 
     Scanner input = new Scanner(System.in);
@@ -260,5 +260,9 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
                 System.out.println(funcionario);
             }
         }
+    }
+
+    public List<Funcionario> getFuncionarios () {
+        return funcionarios;
     }
 }

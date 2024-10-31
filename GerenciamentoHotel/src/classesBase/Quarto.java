@@ -32,8 +32,8 @@ public class Quarto {
         return precoDiaria;
     }
 
-    public void atualizarStatus(boolean disponivel) {
-        this.disponivel = disponivel;
+    public void setDisponivel(boolean disponivel) {
+    	this.disponivel = disponivel;
     }
 
     public boolean isDisponivel() {

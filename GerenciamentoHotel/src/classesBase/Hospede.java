@@ -11,7 +11,7 @@ public class Hospede extends Pessoa {
     private String endereco;
     private String contato;
     private Reserva reserva;
-    private List<Historico> historico;
+    private List<Reserva> historico;
 
     public Hospede(String cpf, String nome, String contato, LocalDate dataDeNascimento, String endereco) {
         super(cpf, nome);
@@ -45,11 +45,11 @@ public class Hospede extends Pessoa {
         this.endereco = endereco;
     }
 
-    public List<Historico> getHistorico() {
+    public List<Reserva> getHistorico() {
         return historico;
     }
 
-    public void adicionarHistorico(Historico historico) {
+    public void setHistorico(Reserva historico) {
         this.historico.add(historico);
     }
 
@@ -59,6 +59,10 @@ public class Hospede extends Pessoa {
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    public void retiraReserva () {
+        this.reserva = null;
     }
 
     @Override

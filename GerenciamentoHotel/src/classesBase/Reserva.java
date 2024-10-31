@@ -9,11 +9,16 @@ public class Reserva {
     private LocalDate saida;
     private String tipoDoQuarto;
     private int quantidadeDeHospedes;
-	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes) {
+    private String cpfHospede;
+	private int numeroQuarto;
+	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes, String cpfHospede,int numeroQuarto) {
 		this.entrada = entrada;
 		this.saida = saida;
 		this.tipoDoQuarto = tipoDoQuarto;
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
+		this.cpfHospede = cpfHospede;
+		this.numeroQuarto = numeroQuarto;
+		
 	}
 	public LocalDate getEntrada() {
 		return entrada;
@@ -36,9 +41,18 @@ public class Reserva {
 	public int getQuantidadeDeHospedes() {
 		return quantidadeDeHospedes;
 	}
+	public String getHospedeCpf() {
+        return cpfHospede;
+    }
+
+	public int getNumeroQuarto() {
+		return numeroQuarto;
+	}
+
 	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
 	}
+	
     
     
 
