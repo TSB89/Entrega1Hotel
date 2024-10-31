@@ -52,8 +52,16 @@ public class Reserva {
 	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
 	}
-	
-    
-    
 
+	@Override
+	public String toString() {
+		return "Reserva{" +
+				"cpfHospede='" + cpfHospede + '\'' +
+				", entrada=" + entrada +
+				", saida=" + saida +
+				", tipoDoQuarto='" + tipoDoQuarto + '\'' +
+				", quantidadeDeHospedes=" + quantidadeDeHospedes +
+				", numeroQuarto=" + numeroQuarto +
+				'}';
+	}
 }

@@ -16,12 +16,14 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
     private List<Reserva> reservas;
     private List<Quarto> quartos;
     private List<Hospede> hospedes;
+    private List<Integer> numeroQuartosReservados;
     private int numeroDoQuarto;
     private Scanner scanner = new Scanner(System.in);
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public GerenciamentoReserva(List<Quarto> quartos, List<Hospede> hospedes) {
         this.reservas = new ArrayList<>();
+        this.numeroQuartosReservados = new ArrayList<>();
         this.quartos = quartos;
         this.hospedes = hospedes;
     }
@@ -101,7 +103,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             entradaValida = false;
             while (!entradaValida) {
                 for (int numero : numerosDisponiveis) {
-                    System.out.printf("Quarto (Nº%d).", numero);
+                    System.out.printf("\nQuarto (Nº%d).", numero);
                 }
                 System.out.println("\nInsira o número do quarto de " + tipoQuarto + " que deseja reservar:");
                 if (!scanner.hasNextInt()) {
@@ -111,7 +113,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                     numeroQuarto = scanner.nextInt();
                     scanner.nextLine();
                     if (!numerosDisponiveis.contains(numeroQuarto)) {
-                        System.out.println("Não existem quartos com esse número.");
+                        System.out.println("\nNão existem quartos com esse número.");
                         continue;
                     }
                     entradaValida = true;
@@ -137,7 +139,8 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             }
         }
 
-        this.numeroDoQuarto = numeroQuarto;
+        //this.numeroDoQuarto = numeroQuarto;
+        numeroQuartosReservados.add(numeroQuarto);
         Reserva reserva = new Reserva(dataEntrada, dataSaida, tipoQuarto, quantidadeHospedes, cpf, numeroQuarto);
         reservas.add(reserva);
         for (Hospede hospede1:hospedes) {
@@ -175,6 +178,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 break;
             }
         }
+        System.out.println("\nHóspede não possui nenhuma reserva para cancelar.");
     }
 
     @Override
@@ -230,7 +234,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
         boolean entradaValida = false;
         while (!entradaValida) {
             for (int numero : numerosDisponiveis) {
-                System.out.printf("Quarto (Nº%d).", numero);
+                System.out.printf("\nQuarto (Nº%d).", numero);
             }
             System.out.println("\nInsira o número do quarto de " + tipoQuarto + ":");
             if (!scanner.hasNextInt()) {
@@ -240,7 +244,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 numeroQuarto = scanner.nextInt();
                 scanner.nextLine();
                 if (!numerosDisponiveis.contains(numeroQuarto)) {
-                    System.out.println("Não existem quartos com esse número.");
+                    System.out.println("\nNão existem quartos com esse número.");
                     continue;
                 }
                 entradaValida = true;
@@ -254,7 +258,6 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
         }
     }
 
-    //vou setar a disponibilidade no hotel no metodo chekin e checkout
     public void liberarQuarto(int numeroQuarto) {
         for (int i = 0; i < quartos.size(); i++) {
             if (quartos.get(i).getNumero() == numeroQuarto) {
@@ -271,7 +274,9 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                         break;
                     }
                 }
+                this.numeroQuartosReservados.remove(Integer.valueOf(numeroQuarto));
                 reservas.remove(reserva);
+                System.out.println("\nCheck-Out realizado com sucesso!");
                 break;
             }
         }
@@ -284,10 +289,28 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 break;
             }
         }
+
+        for (Reserva reserva:reservas) {
+            if (reserva.getNumeroQuarto() == numeroQuarto) {
+                for (Hospede hospede:hospedes) {
+                    if (reserva.getHospedeCpf().equals(hospede.getCpf())) {
+                        hospede.setReserva(reserva);
+                        break;
+                    }
+                }
+                reservas.remove(reserva);
+                System.out.println("\nCheck-In realizado com sucesso!");
+                break;
+            }
+        }
     }
 
     public int getNumeroDoQuarto() {
         return numeroDoQuarto;
+    }
+
+    public List<Integer> getNumeroQuartosReservados() {
+        return numeroQuartosReservados;
     }
 
     public Reserva getReserva (int numeroQuarto)  {
@@ -298,6 +321,10 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             }
         }
         return vazia;
+    }
+
+    public List<Reserva>getReservas() {
+        return this.reservas;
     }
 
     private LocalDate lerData() {
