@@ -22,7 +22,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
         System.out.println("\nInsira o Nome do funcionário:");
         String nome = input.nextLine();
 
-        String cpf;
+        String cpf = "";
         while (true) {
             System.out.println("\nInsira o CPF do funcionário (11 dígitos):");
             cpf = input.nextLine();
