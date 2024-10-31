@@ -34,7 +34,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             cpf = input.nextLine();
             if (cpf.matches("\\d{11}")) {
                 if (cpfJaCadastrado(cpf)) {
-                    System.out.println("\nCpf já cadastrado, insira outro cpf.");
+                    System.out.println("\nCPF já cadastrado, insira outro CPF.");
                 }
                 else {
                     break;
@@ -53,7 +53,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                 dataNascimento = LocalDate.parse(data,formatarData);
                 dataValida = true;
             } catch (DateTimeParseException e) {
-                System.out.println("\nInsira a data de nascimento de forma correta (DD/MM/AAAA)");
+                System.out.println("\nInsira a Data de Nascimento de forma Correta (DD/MM/AAAA)");
             }
         }
 
@@ -97,16 +97,16 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                         int opcao = 0;
                         while (opcao != 6) {
                             System.out.println("\nDigite o número referente a opção que deseja realizar:" +
-                                    "\n1) Alterar Nome." +
-                                    "\n2) Alterar CPF." +
-                                    "\n3) Alterar Data de Nascimento." +
-                                    "\n4) Alterar Endereço." +
-                                    "\n5) Alterar Contato." +
-                                    "\n6) Sair do Menu de Alteração de Dados.");
+                                    "\n1) Alterar Nome" +
+                                    "\n2) Alterar CPF" +
+                                    "\n3) Alterar Data de Nascimento" +
+                                    "\n4) Alterar Endereço" +
+                                    "\n5) Alterar Contato" +
+                                    "\n6) Sair do Menu de Alteração de Dados");
 
                             if (!input.hasNextInt()) {
                                 input.nextLine();
-                                System.out.println("\nEntrada inválida, insira um número inteiro!");
+                                System.out.println("\nEntrada Inválida! Insira um Número Inteiro!");
                                 continue;
                             }
 
@@ -118,7 +118,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                             }
 
                             else if (opcao == 1) {
-                                System.out.println("\nInsira o novo nome do Hóspede:");
+                                System.out.println("\nInsira o Novo Nome do Hóspede:");
                                 String novoNome = input.nextLine();
                                 hospedes.get(i).setNome(novoNome);
                             }
@@ -215,7 +215,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             for (Hospede hospede:hospedes) {
                 if (hospede.getCpf().equals(cpf)) {
                     if (hospede.getHistorico().isEmpty()) {
-                        System.out.println("\nHóspede não realizou nenhuma estadia no hotel até o momento!");
+                        System.out.println("\nHóspede não realizou Nenhuma estadia no hotel até o momento!");
                         break;
                     }
                     else {
@@ -233,7 +233,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             }
         }
         else {
-            System.out.println("\nNenhum hospede cadastrado.");
+            System.out.println("\nNenhum Hóspede Cadastrado.");
         }
     }
 

@@ -82,7 +82,7 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
                 try {
                     capacidade = Integer.parseInt(capacidadeInput);
                     if (capacidade <= 0) {
-                        System.out.println("\nCapacidade do Quarto deve ser um número Positivo.");
+                        System.out.println("\nCapacidade do Quarto deve ser um Número Positivo.");
                     } else {
                         entradaValida = true;
                     }
