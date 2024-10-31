@@ -36,5 +36,13 @@ public class Funcionario extends Pessoa{
 	public void setHorasDeTrabalho(int horasDeTrabalho) {
 		this.horasDeTrabalho = horasDeTrabalho;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "\nNome: " + getNome() +
+				"\nCpf: " + getCpf() +
+				"\nCargo: " + getCargo() +
+				"\nHoras de trabalho: " + getHorasDeTrabalho() +
+				"\nSalário: R$" + getSalario() + "\n";
+	}
 }
