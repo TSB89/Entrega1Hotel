@@ -7,26 +7,30 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Hotel hotel = new Hotel();
 
-        System.out.println("\nSistema de Gerneciamento de Hotel");
+        System.out.println("-------------------------------------------------------------");
+        System.out.println("\nBem Vindo(a) ao nosso Sistema de Gerenciamento de Hotel!");
+        System.out.println();
         int opcao = 0;
         while (opcao != 16) {
-            System.out.println("\nDigite o número referente a opção que deseja realizar:" +
-                               "\n1) Cadastrar novo funcionário." +
-                               "\n2) Cadastrar novo hóspede." +
-                               "\n3) Cadastrar novo quarto." +
-                               "\n4) Visualizar funcionários cadastrados." +
-                               "\n5) Visualizar hóspedes cadastrados." +
-                               "\n6) Visualizar quartos cadastrados." +
-                               "\n7) Atualizar status do quarto." +
-                               "\n8) Editar informações do funcionário." +
-                               "\n9) Editar informações do hóspede." +
-                               "\n10) Visualizar histórico de estadias do hóspede." +
-                               "\n11) Verificar quartos disponiveis para reserva em periodo especifico." +
-                               "\n12) Criar uma reserva." +
-                               "\n13) Cancelar uma reserva." +
-                               "\n14) Realizar Check-In." +
-                               "\n15) Realizar Check-Out." +
-                               "\n16) Sair do sistema de gerenciamento de hotel.");
+        	System.out.println("-------------------------------------------------------------");
+            System.out.println("\nDigite o Número referente a Opção que deseja realizar:\n" +
+                               "\n1  = Cadastrar Novo Funcionário" +
+                               "\n2  = Cadastrar Novo Hóspede" +
+                               "\n3  = Cadastrar Novo Quarto" +
+                               "\n4  = Visualizar Funcionários Cadastrados" +
+                               "\n5  = Visualizar Hóspedes Cadastrados" +
+                               "\n6  = Visualizar Quartos Cadastrados" +
+                               "\n7  = Atualizar Status do Quarto" +
+                               "\n8  = Editar Informações do Funcionário" +
+                               "\n9  = Editar Informações do Hóspede" +
+                               "\n10 = Visualizar Histórico de Estadias do Hóspede" +
+                               "\n11 = Verificar Quartos disponiveis para Reserva em Período Específico" +
+                               "\n12 = Criar uma Reserva" +
+                               "\n13 = Cancelar uma Reserva" +
+                               "\n14 = Realizar Check-In" +
+                               "\n15 = Realizar Check-Out" +
+                               "\n16 = Sair do Sistema de Gerenciamento de Hotel");
+
 
             if (!input.hasNextInt()) {
                 System.out.println("\nEntrada inválida, insira um número inteiro!");

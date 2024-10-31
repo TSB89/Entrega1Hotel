@@ -88,7 +88,7 @@ public class Hotel {
 
     public void checkIn() {
         if (!gerenciamentoReserva.getReservas().isEmpty()) {
-            System.out.println("\nInsira o numero do quarto que vai realizar o Check-In:");
+            System.out.println("\nInsira o Número do Quarto que Deseja realizar o Check-In:");
             System.out.println("\nNumeros dos quartos:");
             numerosQuarto = gerenciamentoReserva.getNumeroQuartosReservados();
             for (int num:numerosQuarto) {
@@ -111,14 +111,14 @@ public class Hotel {
             checkInRealizado = true;
         }
         else {
-            System.out.println("\nNão existem reservas para realizar Check-In");
+            System.out.println("\nNão Existem Reservas para Realizar Check-In");
         }
     }
 
     public void checkOut() {
         if (!gerenciamentoReserva.getReservas().isEmpty()) {
-            System.out.println("\nInsira o numero do quarto que vai realizar o Check-Out:");
-            System.out.println("\nNumeros dos quartos:");
+            System.out.println("\nInsira o NÚmero do Quarto que vai realizar o Check-Out:");
+            System.out.println("\nNumeros dos Quartos:");
             numerosQuarto = gerenciamentoReserva.getNumeroQuartosReservados();
             for (int num:numerosQuarto) {
                 System.out.printf("\nQuarto (Nº%d).", num);
@@ -142,7 +142,7 @@ public class Hotel {
             }
         }
         else  {
-            System.out.println("\nNão existem reservas para realizar Check-Out");
+            System.out.println("\nNão Existem Reservas para Realizar Check-Out");
         }
     }
 }
