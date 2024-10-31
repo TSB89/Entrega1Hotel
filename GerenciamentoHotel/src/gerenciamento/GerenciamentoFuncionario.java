@@ -1,6 +1,7 @@
 package gerenciamento;
 
 import classesBase.Funcionario;
+import classesBase.Hospede;
 import interfaces.GerenciamentoPadrao;
 
 import java.util.ArrayList;
@@ -10,12 +11,12 @@ import java.util.Scanner;
 public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 
     private List<Funcionario> funcionarios;
+    private Scanner input = new Scanner(System.in);
 
     public GerenciamentoFuncionario(List<Funcionario>funcionarios) {
         this.funcionarios = funcionarios;
     }
 
-    Scanner input = new Scanner(System.in);
 
     @Override
     public void cadastrar() {
@@ -27,7 +28,12 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
             System.out.println("\nInsira o CPF do funcionário (11 dígitos):");
             cpf = input.nextLine();
             if (cpf.matches("\\d{11}")) {
-                break;
+                if (cpfJaCadastrado(cpf)) {
+                    System.out.println("\nCpf já cadastrado, insira outro cpf.");
+                }
+                else {
+                    break;
+                }
             } else {
                 System.out.println("\nPor favor, insira um CPF válido com 11 dígitos.");
             }
@@ -45,7 +51,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 
             if (!input.hasNextInt()) {
                 input.nextLine();
-                System.out.println("\\nEntrada Inválida! Insira um Número Inteiro.");
+                System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                 continue;
             }
             opcao = input.nextInt();
@@ -81,7 +87,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
         while (!entradaValida) {
             System.out.println("\nInsira o salário por hora do funcionário:");
             if (!input.hasNextDouble()) {
-                System.out.println("\\nEntrada Inválida! Insira um Número Inteiro.");
+                System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                 input.nextLine();
                 continue;
             }
@@ -277,6 +283,17 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
     }
 
     public List<Funcionario> getFuncionarios () {
-        return funcionarios;
+        return this.funcionarios;
+    }
+
+    private boolean cpfJaCadastrado(String cpf) {
+        if (!funcionarios.isEmpty()) {
+            for (Funcionario funcionario:funcionarios) {
+                if (funcionario.getCpf().equals(cpf)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

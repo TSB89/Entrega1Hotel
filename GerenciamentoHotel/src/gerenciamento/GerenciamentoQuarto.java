@@ -10,12 +10,11 @@ import java.util.Scanner;
 public class GerenciamentoQuarto implements GerenciamentoPadrao {
 
     private List<Quarto> quartos;
+    private Scanner scanner = new Scanner(System.in);
 
-    public GerenciamentoQuarto() {
-        this.quartos = new ArrayList<>();
+    public GerenciamentoQuarto(List<Quarto>quartos) {
+        this.quartos = quartos;
     }
-
-    Scanner scanner = new Scanner(System.in);
 
     @Override
     public void cadastrar() {
@@ -131,6 +130,13 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
 
     @Override
     public void visualizar() {
+        System.out.println("\nQuartos cadastrados:\n");
+        for (Quarto quarto:quartos) {
+            System.out.println(quarto);
+        }
+    }
+
+    public void visualizarDisponivel () {
         boolean existeDisponivel = false;
         for (Quarto quarto : quartos) {
             if (quarto.isDisponivel()) {
@@ -211,5 +217,9 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
                 break;
             }
         }
+    }
+
+    private List<Quarto>getQuartos() {
+        return this.quartos;
     }
 }
