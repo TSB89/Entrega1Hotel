@@ -9,11 +9,18 @@ public class Reserva {
     private LocalDate saida;
     private String tipoDoQuarto;
     private int quantidadeDeHospedes;
-	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes) {
+    private String cpfHospede;
+	private int numeroQuarto;
+	private boolean checkInRealizado;
+	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes, String cpfHospede,int numeroQuarto) {
 		this.entrada = entrada;
 		this.saida = saida;
 		this.tipoDoQuarto = tipoDoQuarto;
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
+		this.cpfHospede = cpfHospede;
+		this.numeroQuarto = numeroQuarto;
+		this.checkInRealizado = false;
+		
 	}
 	public LocalDate getEntrada() {
 		return entrada;
@@ -36,10 +43,35 @@ public class Reserva {
 	public int getQuantidadeDeHospedes() {
 		return quantidadeDeHospedes;
 	}
+	public String getHospedeCpf() {
+        return cpfHospede;
+    }
+
+	public int getNumeroQuarto() {
+		return numeroQuarto;
+	}
+
 	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
 	}
-    
-    
 
+	public boolean isCheckInRealizado() {
+		return checkInRealizado;
+	}
+
+	public void setCheckInRealizado(boolean checkInRealizado) {
+		this.checkInRealizado = checkInRealizado;
+	}
+
+	@Override
+	public String toString() {
+		return "Reserva{" +
+				"cpfHospede='" + cpfHospede + '\'' +
+				", entrada=" + entrada +
+				", saida=" + saida +
+				", tipoDoQuarto='" + tipoDoQuarto + '\'' +
+				", quantidadeDeHospedes=" + quantidadeDeHospedes +
+				", numeroQuarto=" + numeroQuarto +
+				'}';
+	}
 }

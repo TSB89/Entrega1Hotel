@@ -32,8 +32,8 @@ public class Quarto {
         return precoDiaria;
     }
 
-    public void atualizarStatus(boolean disponivel) {
-        this.disponivel = disponivel;
+    public void setDisponivel(boolean disponivel) {
+    	this.disponivel = disponivel;
     }
 
     public boolean isDisponivel() {
@@ -42,6 +42,6 @@ public class Quarto {
 
     @Override
     public String toString() {
-        return "\nQuarto: " + numero + "\nTipo: " + tipo + " \nCapacidade: " + capacidade + " \nPreço: R$ " + precoDiaria + " \nDisponível: " + (disponivel ? "Sim" : "Não");
+        return "\nQuarto: " + numero + "\nTipo: " + tipo + " \nCapacidade: " + capacidade + " \nPreço: R$ " + String.format("%.2f", precoDiaria) + " \nDisponível: " + (disponivel ? "Sim" : "Não");
     }
 }
