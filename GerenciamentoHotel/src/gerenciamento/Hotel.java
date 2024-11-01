@@ -17,7 +17,7 @@ public class Hotel {
     private List<Hospede> hospedes;
     private List<Funcionario> funcionarios;
     private List<Quarto> quartos;
-    private List<Integer> numerosQuartosChaeckIn;
+    private List<Integer> numerosQuartosCheckIn;
     private List<Integer> numerosQuarto;
     private boolean checkInRealizado;
     private Scanner input = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class Hotel {
         quartos = new ArrayList<>();
         hospedes = new ArrayList<>();
         funcionarios = new ArrayList<>();
-        numerosQuartosChaeckIn = new ArrayList<>();
+        numerosQuartosCheckIn = new ArrayList<>();
         numerosQuarto = new ArrayList<>();
         gerenciamentoReserva = new GerenciamentoReserva(quartos, hospedes);
         gerenciamentoHospede = new GerenciamentoHospede(hospedes);
@@ -89,14 +89,14 @@ public class Hotel {
 
     public void checkIn() {
         if (!gerenciamentoReserva.getReservas().isEmpty()) {
-            numerosQuartosChaeckIn = gerenciamentoReserva.getNumeroQuartosReservadosCheckIn();
-            if (!numerosQuartosChaeckIn.isEmpty()) {
+            numerosQuartosCheckIn = gerenciamentoReserva.getNumeroQuartosReservadosCheckIn();
+            if (!numerosQuartosCheckIn.isEmpty()) {
                 boolean entradaValida = false;
                 int numero = -1;
                 while (!entradaValida) {
                     System.out.println("\nInsira o Número do Quarto que Deseja realizar o Check-In:");
                     System.out.println("\nNúmeros dos Quartos:");
-                    for (int num : numerosQuartosChaeckIn) {
+                    for (int num : numerosQuartosCheckIn) {
                         System.out.printf("\nQuarto (Nº%d).", num);
                     }
                     System.out.println();
@@ -107,7 +107,7 @@ public class Hotel {
                     }
                     numero = input.nextInt();
                     input.nextLine();
-                    if (!numerosQuartosChaeckIn.contains(numero)) {
+                    if (!numerosQuartosCheckIn.contains(numero)) {
                         System.out.println("\nNúmero de Quarto não existe!");
                         continue;
                     }
