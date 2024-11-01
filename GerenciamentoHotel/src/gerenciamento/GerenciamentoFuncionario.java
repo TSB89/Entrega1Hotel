@@ -37,6 +37,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 			}
 		}
 
+<<<<<<< HEAD
 		int opcao = 0;
 		boolean entradaValida = false;
 		String cargo = "";
@@ -51,6 +52,33 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 			}
 			opcao = input.nextInt();
 			input.nextLine();
+=======
+        String cpf = "";
+        while (true) {
+            System.out.println("\nInsira o CPF do funcionário (11 dígitos):");
+            cpf = input.nextLine();
+            if (cpf.matches("\\d{11}")) {
+                if (cpfJaCadastrado(cpf)) {
+                    System.out.println("\nCPF já cadastrado, insira outro CPF.");
+                }
+                else {
+                    break;
+                }
+            } else {
+                System.out.println("\nPor favor, insira um CPF válido com 11 dígitos.");
+            }
+        }
+
+        int opcao = 0;
+        boolean entradaValida = false;
+        String cargo = "";
+        while (!entradaValida) {
+            System.out.println("\nDigite o Número referente ao Cargo do funcionário:\n" +
+                    "\n1) Gerente" +
+                    "\n2) Chefia" +
+                    "\n3) Assistente" +
+                    "\n4) Auxiliar");
+>>>>>>> 8126a28c9560dc49d554afcec2243492ca3ca378
 
 			switch (opcao) {
 			case 1 -> {
@@ -91,10 +119,26 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 			entradaValida = true;
 		}
 
+<<<<<<< HEAD
 		entradaValida = false;
 		int horasDeTrabalho = 0;
 		while (!entradaValida) {
 			System.out.println("\nInsira a Quantidade de Horas de Trabalho por mês do funcionário:");
+=======
+        entradaValida = false;
+        double salarioHora = 0.0;
+        while (!entradaValida) {
+            System.out.println("\nInsira o Salário por Hora do funcionário:");
+            if (!input.hasNextDouble()) {
+                System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
+                input.nextLine();
+                continue;
+            }
+            salarioHora = input.nextDouble();
+            input.nextLine();
+            entradaValida = true;
+        }
+>>>>>>> 8126a28c9560dc49d554afcec2243492ca3ca378
 
 			if (!input.hasNextInt()) {
 				System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
@@ -265,6 +309,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 		}
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void visualizar() {
 		if (funcionarios.isEmpty()) {
@@ -280,6 +325,45 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 	public List<Funcionario> getFuncionarios() {
 		return this.funcionarios;
 	}
+=======
+                                if (!input.hasNextInt()) {
+                                    System.out.println("\nEntrada Inválida! Insira um Número inteiro.");
+                                    input.nextLine();
+                                    continue;
+                                }
+                                novaHorasDeTrabalho = input.nextInt();
+                                input.nextLine();
+                                novaEntradaValida = true;
+                            }
+                            double salarioHora = (funcionarios.get(i).getSalario() / funcionarios.get(i).getHorasDeTrabalho());
+                            double novoSalario = (salarioHora * novaHorasDeTrabalho);
+                            funcionarios.get(i).setHorasDeTrabalho(novaHorasDeTrabalho);
+                            funcionarios.get(i).setSalario(novoSalario);
+                            System.out.println("\nQuantidade de Horas de Trabalho do Funcionário editada com Sucesso!");
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        else  {
+            System.out.println("\nNenhum funcionário Cadastrado para ser editado.");
+        }
+    }
+
+    @Override
+    public void visualizar() {
+        if (funcionarios.isEmpty()) {
+            System.out.println("\nNenhum Funcionário Cadastrado!");
+        }
+        else {
+            System.out.println("Funcionários Cadastrados:");
+            for (Funcionario funcionario:funcionarios) {
+                System.out.println(funcionario);
+            }
+        }
+    }
+>>>>>>> 8126a28c9560dc49d554afcec2243492ca3ca378
 
 	private boolean cpfJaCadastrado(String cpf) {
 		if (!funcionarios.isEmpty()) {

@@ -34,7 +34,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             cpf = input.nextLine();
             if (cpf.matches("\\d{11}")) {
                 if (cpfJaCadastrado(cpf)) {
-                    System.out.println("\nCpf já cadastrado, insira outro cpf.");
+                    System.out.println("\nCPF já cadastrado, insira outro CPF.");
                 }
                 else {
                     break;
@@ -97,16 +97,16 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                         int opcao = 0;
                         while (opcao != 6) {
                             System.out.println("\nDigite o número referente a opção que deseja realizar:" +
-                                    "\n1) Alterar Nome." +
-                                    "\n2) Alterar CPF." +
-                                    "\n3) Alterar Data de Nascimento." +
-                                    "\n4) Alterar Endereço." +
-                                    "\n5) Alterar Contato." +
-                                    "\n6) Sair do Menu de Alteração de Dados.");
+                                    "\n1) Alterar Nome" +
+                                    "\n2) Alterar CPF" +
+                                    "\n3) Alterar Data de Nascimento" +
+                                    "\n4) Alterar Endereço" +
+                                    "\n5) Alterar Contato" +
+                                    "\n6) Sair do Menu de Alteração de Dados");
 
                             if (!input.hasNextInt()) {
                                 input.nextLine();
-                                System.out.println("\nEntrada inválida, insira um número inteiro!");
+                                System.out.println("\nEntrada Inválida! Insira um Número Inteiro!");
                                 continue;
                             }
 
@@ -118,7 +118,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                             }
 
                             else if (opcao == 1) {
-                                System.out.println("\nInsira o novo nome do Hóspede:");
+                                System.out.println("\nInsira o Novo Nome do Hóspede:");
                                 String novoNome = input.nextLine();
                                 hospedes.get(i).setNome(novoNome);
                             }
@@ -171,20 +171,20 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             }
         }
         else {
-            System.out.println("\nNenhum Hóspede Cadastrado para ser Editado.");
+            System.out.println("\nNenhum Hóspede Cadastrado para ser Editado!");
         }
     }
 
     @Override
     public void visualizar() {
         if (!hospedes.isEmpty()) {
-            System.out.println("\nHóspedes cadastrados:");
+            System.out.println("\nHóspedes Cadastrados:");
             for (Hospede hospede:hospedes) {
                 System.out.println(hospede);
             }
         }
         else {
-            System.out.println("\nNenhum Hóspede Cadastrado.");
+            System.out.println("\nNenhum Hóspede Cadastrado!");
         }
     }
 
@@ -195,7 +195,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
     public void visualizarHistorico() {
         if (!hospedes.isEmpty()) {
             ArrayList<String>cpfsValidos = new ArrayList<>();
-            System.out.println("\nHóspedes cadastrados:");
+            System.out.println("\nHóspedes Cadastrados:");
             for (Hospede hospede:hospedes) {
                 System.out.println(hospede);
                 cpfsValidos.add(hospede.getCpf());
@@ -203,7 +203,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             boolean entradaValida = false;
             String cpf = "";
             while (!entradaValida) {
-                System.out.println("\nInsira o CPF do Hóspede que deseja visualizar o histórico de estadias:");
+                System.out.println("\nInsira o CPF do Hóspede que deseja Visualizar o Histórico de Estadias:");
                 cpf = input.nextLine();
                 if (!cpfsValidos.contains(cpf)) {
                     System.out.println("\nInsira um CPF válido!");
@@ -215,7 +215,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             for (Hospede hospede:hospedes) {
                 if (hospede.getCpf().equals(cpf)) {
                     if (hospede.getHistorico().isEmpty()) {
-                        System.out.println("\nHóspede não realizou nenhuma estadia no hotel até o momento!");
+                        System.out.println("\nHóspede não realizou Nenhuma Estadia no Hotel até o Momento!");
                         break;
                     }
                     else {
@@ -234,7 +234,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             }
         }
         else {
-            System.out.println("\nNenhum hospede cadastrado.");
+            System.out.println("\nNenhum Hóspede Cadastrado!");
         }
     }
 
