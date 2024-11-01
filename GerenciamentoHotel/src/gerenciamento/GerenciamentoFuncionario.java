@@ -20,8 +20,16 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
 
     @Override
     public void cadastrar() {
-        System.out.println("\nInsira o Nome do funcionário:");
-        String nome = input.nextLine();
+        String nome = "";
+        while (true) {
+            System.out.println("\nInsira o Nome do funcionário:");
+            nome = input.nextLine();
+            if (nome.isEmpty()) {
+                System.out.println("\nErro! Nome do Funcionário Não foi Informado.");
+            }else {
+                break;
+            }
+        }
 
         String cpf = "";
         while (true) {
@@ -165,8 +173,16 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
                         }
 
                         else if (opcao == 1) {
-                            System.out.println("\nInsira o novo Nome do funcionário:");
-                            String novoNome = input.nextLine();
+                            String novoNome = "";
+                            while (true) {
+                                System.out.println("\nInsira o novo Nome do funcionário:");
+                                novoNome = input.nextLine();
+                                if (novoNome.isEmpty()) {
+                                    System.out.println("\nErro! Nome do Funcionário Não foi Informado.");
+                                }else {
+                                    break;
+                                }
+                            }
                             funcionarios.get(i).setNome(novoNome);
                             System.out.println("\nNome do Funcionário editado com Sucesso!");
                         }

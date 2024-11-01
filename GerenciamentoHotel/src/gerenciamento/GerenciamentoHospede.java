@@ -24,8 +24,16 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
 
     @Override
     public void cadastrar() {
-        System.out.println("\nInsira o Nome do Hóspede:");
-        String nome = input.nextLine();
+        String nome = "";
+        while (true) {
+            System.out.println("\nInsira o Nome do Hóspede:");
+            nome = input.nextLine();
+            if (nome.isEmpty()) {
+                System.out.println("\nErro! Nome do Hóspede Não foi Informado.");
+            }else {
+                break;
+            }
+        }
 
         String cpf;
         while (true) {
@@ -61,12 +69,18 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
         while (endereco.isEmpty()) {
             System.out.println("\nInsira o Endereço do Hóspede (Rua):");
             endereco = input.nextLine();
+            if (endereco.isEmpty()) {
+                System.out.println("\nErro! Endereço do Hóspede Não foi Informado.");
+            }
         }
 
         String contato = "";
         while (contato.isEmpty()) {
             System.out.println("\nInsira o Número de Contato do Hóspede:");
             contato = input.nextLine();
+            if (contato.isEmpty()) {
+                System.out.println("\nErro! Contato do Hóspede Não foi Informado.");
+            }
         }
 
         Hospede hospede = new Hospede(cpf,nome,contato,dataNascimento,endereco);
@@ -118,9 +132,18 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                             }
 
                             else if (opcao == 1) {
-                                System.out.println("\nInsira o Novo Nome do Hóspede:");
-                                String novoNome = input.nextLine();
+                                String novoNome = "";
+                                while (true) {
+                                    System.out.println("\nInsira o Novo Nome do Hóspede:");
+                                    novoNome = input.nextLine();
+                                    if (novoNome.isEmpty()) {
+                                        System.out.println("\nErro! Nome do Hóspede Não foi Informado.");
+                                    }else {
+                                        break;
+                                    }
+                                }
                                 hospedes.get(i).setNome(novoNome);
+                                System.out.println("\nNome do Hóspede editado com Sucesso!");
                             }
 
                             else if (opcao == 2) {
@@ -135,6 +158,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                                     }
                                 }
                                 hospedes.get(i).setCpf(novoCpf);
+                                System.out.println("\nCPF do Hóspede editado com Sucesso!");
                             }
 
                             else if (opcao == 3) {
@@ -151,18 +175,37 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                                     }
                                 }
                                 hospedes.get(i).setDataDeNascimento(novaDataNascimento);
+                                System.out.println("\nData de Nascimento do Hóspede editado com Sucesso!");
                             }
 
                             else if (opcao == 4) {
-                                System.out.println("\nInsira o Novo Endereço do Hóspede (Rua):");
-                                String novoEndereco = input.nextLine();
+                                String novoEndereco = "";
+                                while (true) {
+                                    System.out.println("\nInsira o Novo Endereço do Hóspede (Rua):");
+                                    novoEndereco = input.nextLine();
+                                    if (novoEndereco.isEmpty()) {
+                                        System.out.println("\nErro! Endereço do Hóspede Não foi Informado.");
+                                    }else {
+                                        break;
+                                    }
+                                }
                                 hospedes.get(i).setEndereco(novoEndereco);
+                                System.out.println("\nEndereço do Hóspede editado com Sucesso!");
                             }
 
                             else if (opcao== 5) {
-                                System.out.println("\nInsira o Novo Número de contato do Hóspede:");
-                                String novoContato = input.nextLine();
+                                String novoContato = "";
+                                while (true) {
+                                    System.out.println("\nInsira o Novo Número de contato do Hóspede:");
+                                    novoContato = input.nextLine();
+                                    if (novoContato.isEmpty()) {
+                                        System.out.println("\nErro! Número do Hóspede Não foi Informado.");
+                                    }else {
+                                        break;
+                                    }
+                                }
                                 hospedes.get(i).setContato(novoContato);
+                                System.out.println("\nNúmero do Hóspede editado com Sucesso!");
                             }
                         }
                         break;
