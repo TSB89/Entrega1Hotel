@@ -212,8 +212,4 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
             System.out.println("\nNenhum Quarto Cadastrado para Atualizar!");
         }
     }
-
-    private List<Quarto>getQuartos() {
-        return this.quartos;
-    }
 }
