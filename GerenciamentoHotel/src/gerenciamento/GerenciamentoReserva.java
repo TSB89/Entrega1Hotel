@@ -32,146 +32,183 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
     @Override
     public void cadastrar() {
         if (!hospedes.isEmpty() && !quartos.isEmpty()) {
-            String cpf = "";
-            ArrayList<String> cpfsValidos = new ArrayList<>();
-            boolean podeCadastrar = false;
-            for (Hospede hospede : hospedes) {
-                if (hospede.getReserva() == null) {
-                    podeCadastrar = true;
+            List<String> tiposDisponiveis = new ArrayList<>();
+            boolean temQuarto = false;
+            for (Quarto quarto:quartos) {
+                if (quarto.isDisponivel()) {
+                    temQuarto = true;
+                    tiposDisponiveis.add(quarto.getTipo());
+                }
+            }
+            if (temQuarto) {
+                String cpf = "";
+                ArrayList<String> cpfsValidos = new ArrayList<>();
+                boolean podeCadastrar = false;
+                boolean executado = false;
+                for (Hospede hospede : hospedes) {
+                    if (hospede.getReserva() == null) {
+                        podeCadastrar = true;
+                        if (!executado) {
+                            System.out.println("\nHóspedes que Podem Realizar Reservas:");
+                            executado = true;
+                        }
+                        System.out.println(hospede);
+                        cpfsValidos.add(hospede.getCpf());
+                    }
                 }
                 if (podeCadastrar) {
-                    System.out.println("\nHóspedes que Podem Realizar Reservas:");
-                }
-                System.out.println(hospede);
-                cpfsValidos.add(hospede.getCpf());
-            }
-            if (podeCadastrar) {
-                boolean entradaValida = false;
-                while (!entradaValida) {
-                    System.out.println("\nInsira o CPF do Hóspede que deseja Criar a Reserva:");
-                    cpf = scanner.nextLine();
-                    if (!cpfsValidos.contains(cpf)) {
-                        System.out.println("\nInsira um CPF Válido!");
-                        continue;
-                    }
-                    entradaValida = true;
-                }
-
-                Hospede hospede = buscarHospedePorCpf(cpf);
-                String tipoQuarto = "";
-                int numeroQuarto = 0;
-                LocalDate dataEntrada = null;
-                LocalDate dataSaida = null;
-                do {
-                    System.out.println("\nDigite a data de entrada (DD/MM/AAAA):");
-                    dataEntrada = lerData();
-
-                    System.out.println("\nDigite a data de saída (DD/MM/AAAA):");
-                    dataSaida = lerData();
-
-                    boolean tipoValido = false;
-                    while (!tipoValido) {
-                        System.out.println("\nEscolha o tipo de quarto:" +
-                                "\n1) Solteiro" +
-                                "\n2) Casal" +
-                                "\n3) Suíte");
-
-                        if (!scanner.hasNextInt()) {
-                            scanner.nextLine();
-                            System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
-                            continue;
-                        }
-
-                        int opcaoTipo = scanner.nextInt();
-                        scanner.nextLine();
-
-                        switch (opcaoTipo) {
-                            case 1 -> {
-                                tipoQuarto = "Solteiro";
-                            }
-                            case 2 -> {
-                                tipoQuarto = "Casal";
-                            }
-                            case 3 -> {
-                                tipoQuarto = "Suíte";
-                            }
-                            default -> System.out.println("\nOpção inválida. Por favor, escolha entre 1, 2 ou 3.");
-                        }
-
-                        boolean existe = false;
-                        for (Quarto quarto : quartos) {
-                            if (quarto.getTipo().equals(tipoQuarto)) {
-                                existe = true;
-                                break;
-                            }
-                        }
-                        if (!existe) {
-                            System.out.println("\nNão existem quartos desse tipo cadastrados! Escolha outro tipo de quarto.");
-                            continue;
-                        }
-                        tipoValido = true;
-
-                    }
-                    List<Integer> numerosDisponiveis = new ArrayList<>();
-
-                    for (Quarto quarto : quartos) {
-                        if (quarto.getTipo().equals(tipoQuarto)) {
-                            numerosDisponiveis.add(quarto.getNumero());
-                        }
-                    }
-
-                    entradaValida = false;
+                    boolean entradaValida = false;
                     while (!entradaValida) {
-                        for (int numero : numerosDisponiveis) {
-                            System.out.printf("\nQuarto (Nº%d).", numero);
+                        System.out.println("\nInsira o CPF do Hóspede que deseja Criar a Reserva:");
+                        cpf = scanner.nextLine();
+                        if (!cpfsValidos.contains(cpf)) {
+                            System.out.println("\nInsira um CPF Válido!");
+                            continue;
                         }
-                        System.out.println("\nInsira o Número do Quarto de " + tipoQuarto + " que deseja reservar:");
-                        if (!scanner.hasNextInt()) {
-                            scanner.nextLine();
-                            System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
-                        } else {
-                            numeroQuarto = scanner.nextInt();
-                            scanner.nextLine();
-                            if (!numerosDisponiveis.contains(numeroQuarto)) {
-                                System.out.println("\nNão existem Quartos com esse Número.");
+                        entradaValida = true;
+                    }
+                    Hospede hospede = buscarHospedePorCpf(cpf);
+                    String tipoQuarto = "";
+                    int numeroQuarto = 0;
+                    LocalDate dataEntrada = null;
+                    LocalDate dataSaida = null;
+                    do {
+                        System.out.println("\nDigite a data de entrada (DD/MM/AAAA):");
+                        dataEntrada = lerData();
+
+                        System.out.println("\nDigite a data de saída (DD/MM/AAAA):");
+                        dataSaida = lerData();
+
+                        boolean tipoValido = false;
+                        while (!tipoValido) {
+                            System.out.println("\nEscolha o tipo de quarto:" +
+                                    "\n1) Solteiro" +
+                                    "\n2) Casal" +
+                                    "\n3) Suíte");
+
+                            if (!scanner.hasNextInt()) {
+                                scanner.nextLine();
+                                System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                                 continue;
                             }
-                            entradaValida = true;
+
+                            int opcaoTipo = scanner.nextInt();
+                            scanner.nextLine();
+
+                            switch (opcaoTipo) {
+                                case 1 -> {
+                                    tipoQuarto = "Solteiro";
+                                }
+                                case 2 -> {
+                                    tipoQuarto = "Casal";
+                                }
+                                case 3 -> {
+                                    tipoQuarto = "Suíte";
+                                }
+                                default -> System.out.println("\nOpção inválida. Por favor, escolha entre 1, 2 ou 3.");
+                            }
+
+                            boolean existe = false;
+                            if (!tiposDisponiveis.contains(tipoQuarto)) {
+                                System.out.println("\nTodos os Quartos desse tipo já estão Reservados, Escolha outro.");
+                                continue;
+                            }
+                            for (Quarto quarto : quartos) {
+                                if (quarto.getTipo().equals(tipoQuarto)) {
+                                    existe = true;
+                                    break;
+                                }
+                            }
+                            if (!existe) {
+                                System.out.println("\nNão existem quartos desse tipo cadastrados! Escolha outro tipo de quarto.");
+                                continue;
+                            }
+                            tipoValido = true;
+
+                        }
+                        List<Integer> numerosDisponiveis = new ArrayList<>();
+
+                        for (Quarto quarto : quartos) {
+                            if (quarto.getTipo().equals(tipoQuarto) && quarto.isDisponivel()) {
+                                numerosDisponiveis.add(quarto.getNumero());
+                            }
+                        }
+
+                        entradaValida = false;
+                        while (!entradaValida) {
+                            for (int numero : numerosDisponiveis) {
+                                System.out.printf("\nQuarto (Nº%d).", numero);
+                            }
+                            System.out.println("\nInsira o Número do Quarto de " + tipoQuarto + " que deseja reservar:");
+                            if (!scanner.hasNextInt()) {
+                                scanner.nextLine();
+                                System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
+                            } else {
+                                numeroQuarto = scanner.nextInt();
+                                scanner.nextLine();
+                                if (!numerosDisponiveis.contains(numeroQuarto)) {
+                                    System.out.println("\nNão existem Quartos com esse Número.");
+                                    continue;
+                                }
+                                entradaValida = true;
+                            }
+                        }
+
+                        if (!quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida)) {
+                            System.out.println("\nQuarto não está Disponivel nessa Data, Troque o Quarto ou Escolha outra Data.");
+                        }
+                    } while (!quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida));
+                    int limiteHospedes = 0;
+                    for (Quarto quarto:quartos) {
+                        if (quarto.getNumero() == numeroQuarto) {
+                            limiteHospedes = quarto.getCapacidade();
                         }
                     }
+                    boolean valido = false;
+                    int quantidadeHospedes = 0;
+                    while (!valido) {
+                        System.out.printf("\nDigite a Quantidade de Hóspedes (Limite do Quarto:%d):\n",limiteHospedes);
+                        if (!scanner.hasNextInt()) {
+                            scanner.nextLine();
+                            System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
+                        }
 
-                    if (!quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida)) {
-                        System.out.println("\nQuarto não está Disponivel nessa Data, Troque o Quarto ou Escolha outra Data.");
+                        else {
+                            quantidadeHospedes = scanner.nextInt();
+                            scanner.nextLine();
+                            if (quantidadeHospedes > limiteHospedes) {
+                                System.out.println("\nQuantidade de Hóspedes ultrapassa o limite do quarto! Insira uma Quantidade Menor.");
+                                continue;
+                            } else if (quantidadeHospedes < 0) {
+                                System.out.println("\nEntrada Inválida! Insira um Número Positivo.");
+                                continue;
+                            }
+                            valido = true;
+                        }
                     }
-                } while (!quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida));
-
-                boolean valido = false;
-                int quantidadeHospedes = 0;
-                while (!valido) {
-                    System.out.println("\nDigite a Quantidade de Hóspedes:");
-                    if (!scanner.hasNextInt()) {
-                        scanner.nextLine();
-                        System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
-                    } else {
-                        quantidadeHospedes = scanner.nextInt();
-                        scanner.nextLine();
-                        valido = true;
+                    for (int i = 0;i < quartos.size();i++) {
+                        if (quartos.get(i).getNumero() == numeroQuarto) {
+                            quartos.get(i).setDisponivel(false);
+                            break;
+                        }
                     }
+                    numeroQuartosReservadosCheckIn.add(numeroQuarto);
+                    Reserva reserva = new Reserva(dataEntrada, dataSaida, tipoQuarto, quantidadeHospedes, cpf, numeroQuarto);
+                    reservas.add(reserva);
+                    for (int i = 0; i < hospedes.size(); i++) {
+                        if (hospedes.get(i).getCpf().equals(cpf)) {
+                            hospedes.get(i).setReserva(reserva);
+                            break;
+                        }
+                    }
+                    System.out.println("\nReserva Criada com Sucesso para o Hóspede: " + hospede.getNome());
                 }
-
-                numeroQuartosReservadosCheckIn.add(numeroQuarto);
-                Reserva reserva = new Reserva(dataEntrada, dataSaida, tipoQuarto, quantidadeHospedes, cpf, numeroQuarto);
-                reservas.add(reserva);
-                for (int i = 0; i < hospedes.size(); i++) {
-                    if (hospedes.get(i).getCpf().equals(cpf)) {
-                        hospedes.get(i).setReserva(reserva);
-                        break;
-                    }
+                else {
+                    System.out.println("\nTodos os Hóspedes já Possuem Reservas.");
                 }
-                System.out.println("\nReserva Criada com Sucesso para o Hóspede: " + hospede.getNome());
             }
             else {
-                System.out.println("Todos os Hóspedes já Possuem Reservas.");
+                System.out.println("\nTodos os Quartos já foram Reservados.");
             }
         }
         else if (hospedes.isEmpty()) {
@@ -184,45 +221,61 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
     @Override
     public void editar() {
         if (!hospedes.isEmpty() || !reservas.isEmpty()) {
-            String cpf = "";
-            int numeroQuarto = 0;
-            ArrayList<String> cpfsValidos = new ArrayList<>();
-            System.out.println("\nHospedes cadastrados:");
-            for (Hospede hospede : hospedes) {
-                System.out.println(hospede);
-                cpfsValidos.add(hospede.getCpf());
-            }
-            boolean entradaValida = false;
-            while (!entradaValida) {
-                System.out.println("\nInsira o CPF do Hóspede que deseja Cancelar a Reserva:");
-                cpf = scanner.nextLine();
-                if (!cpfsValidos.contains(cpf)) {
-                    System.out.println("\nInsira um CPF Válido!");
-                    continue;
+            List<Hospede>hospedesComReservas = new ArrayList<>();
+            for (Hospede hospede:hospedes) {
+                if (hospede.getReserva() != null) {
+                    hospedesComReservas.add(hospede);
                 }
-                entradaValida = true;
             }
-            boolean cancelada = false;
-            for (Reserva reserva : reservas) {
-                if (reserva.getHospedeCpf().equals(cpf)) {
-                    if (!reserva.isCheckInRealizado()) {
-                        numeroQuarto = reserva.getNumeroQuarto();
-                        this.numeroQuartosReservadosCheckIn.remove(Integer.valueOf(numeroQuarto));
-                        reservas.remove(reserva);
-                        System.out.println("\nReserva Cancelada com Sucesso!");
-                        for (int i = 0; i < hospedes.size(); i++) {
-                            if (hospedes.get(i).getCpf().equals(cpf)) {
-                                hospedes.get(i).retiraReserva();
-                                break;
+            if (!hospedesComReservas.isEmpty()) {
+                String cpf = "";
+                int numeroQuarto = 0;
+                ArrayList<String> cpfsValidos = new ArrayList<>();
+                System.out.println("\nHospedes com Reservas:");
+                for (Hospede hospede : hospedesComReservas) {
+                    System.out.println(hospede);
+                    cpfsValidos.add(hospede.getCpf());
+                }
+                boolean entradaValida = false;
+                while (!entradaValida) {
+                    System.out.println("\nInsira o CPF do Hóspede que deseja Cancelar a Reserva:");
+                    cpf = scanner.nextLine();
+                    if (!cpfsValidos.contains(cpf)) {
+                        System.out.println("\nInsira um CPF Válido!");
+                        continue;
+                    }
+                    entradaValida = true;
+                }
+                boolean cancelada = false;
+                for (Reserva reserva : reservas) {
+                    if (reserva.getHospedeCpf().equals(cpf)) {
+                        if (!reserva.isCheckInRealizado()) {
+                            numeroQuarto = reserva.getNumeroQuarto();
+                            this.numeroQuartosReservadosCheckIn.remove(Integer.valueOf(numeroQuarto));
+                            reservas.remove(reserva);
+                            System.out.println("\nReserva Cancelada com Sucesso!");
+                            for (int i = 0; i < hospedes.size(); i++) {
+                                if (hospedes.get(i).getCpf().equals(cpf)) {
+                                    hospedes.get(i).retiraReserva();
+                                    for (int j = 0;j < quartos.size();j++) {
+                                        if (quartos.get(j).getNumero() == reserva.getNumeroQuarto()) {
+                                            quartos.get(j).setDisponivel(true);
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
                             }
+                            cancelada = true;
+                            break;
                         }
-                        cancelada = true;
-                        break;
                     }
                 }
-            }
-            if (!cancelada) {
-                System.out.println("\nHóspede não Possui nenhuma Reserva para Cancelar.");
+                if (!cancelada) {
+                    System.out.println("\nHóspede não Possui nenhuma Reserva para Cancelar.");
+                }
+            }else  {
+                System.out.println("\nNenhuma Reserva foi feita para ser Cancelada.");
             }
         } else if (hospedes.isEmpty()) {
             System.out.println("\nNenhum Hóspede Cadastrado para Cancelar Reserva.");
@@ -335,6 +388,12 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                     if (reserva.getHospedeCpf().equals(hospedes.get(i).getCpf())) {
                         hospedes.get(i).setHistorico(reserva);
                         hospedes.get(i).retiraReserva();
+                        for (int j = 0;j < quartos.size();j++) {
+                            if (quartos.get(j).getNumero() == numeroQuarto) {
+                                quartos.get(j).setDisponivel(true);
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
@@ -377,9 +436,9 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             for (Hospede hospede : hospedes) {
                 if (hospede.getReserva() != null) {
                     if (!hospede.getReserva().isCheckInRealizado()) {
-                        System.out.println("Hóspede:");
+                        System.out.println("\nHóspede:");
                         System.out.println(hospede);
-                        System.out.println("Reserva do Hóspede " + hospede.getNome() + ":");
+                        System.out.println("\nReserva do Hóspede " + hospede.getNome() + ":\n");
                         System.out.println(hospede.getReserva());
                     }
                 }
@@ -416,12 +475,12 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
     public void checkOut() {
         if (!numeroQuartosReservadosCheckOut.isEmpty()) {
             for (Hospede hospede : hospedes) {
-                if (hospede.getReserva().isCheckInRealizado()) {
-                    System.out.println(hospede);
-                    System.out.println();
-                    System.out.println("Reserva do Hóspede:");
-                    System.out.println(hospede.getReserva());
-                    System.out.println();
+                if (hospede.getReserva() != null) {
+                    if (hospede.getReserva().isCheckInRealizado()) {
+                        System.out.println(hospede);
+                        System.out.println("\nReserva do Hóspede " + hospede.getNome() + ":\n");
+                        System.out.println(hospede.getReserva());
+                    }
                 }
             }
             int numero = -1;
