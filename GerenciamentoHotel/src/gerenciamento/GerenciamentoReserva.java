@@ -76,8 +76,18 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                         System.out.println("\nDigite a data de entrada (DD/MM/AAAA):");
                         dataEntrada = lerData();
 
-                        System.out.println("\nDigite a data de saída (DD/MM/AAAA):");
-                        dataSaida = lerData();
+                        while (true) {
+                            System.out.println("\nDigite a data de saída (DD/MM/AAAA):");
+                            dataSaida = lerData();
+                            if (dataSaida.getYear() >= dataEntrada.getYear()) {
+                                if (dataSaida.getMonthValue() >= dataEntrada.getMonthValue()) {
+                                    if (dataSaida.getDayOfMonth() > dataEntrada.getDayOfMonth()) {
+                                        break;
+                                    }
+                                }
+                            }
+                            System.out.println("\nData de Saida tem que ser Após a Data de Entrada.");
+                        }
 
                         boolean tipoValido = false;
                         while (!tipoValido) {
@@ -290,8 +300,19 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             System.out.println("\nDigite a data de entrada (DD/MM/AAAA):");
             LocalDate dataEntrada = lerData();
 
-            System.out.println("\nDigite a data de saída (DD/MM/AAAA):");
-            LocalDate dataSaida = lerData();
+            LocalDate dataSaida = null;
+            while (true) {
+                System.out.println("\nDigite a data de saída (DD/MM/AAAA):");
+                dataSaida = lerData();
+                if (dataSaida.getYear() >= dataEntrada.getYear()) {
+                    if (dataSaida.getMonthValue() >= dataEntrada.getMonthValue()) {
+                        if (dataSaida.getDayOfMonth() > dataEntrada.getDayOfMonth()) {
+                            break;
+                        }
+                    }
+                }
+                System.out.println("\nData de Saida tem que ser Após a Data de Entrada.");
+            }
 
             String tipoQuarto = "";
             boolean tipoValido = false;
