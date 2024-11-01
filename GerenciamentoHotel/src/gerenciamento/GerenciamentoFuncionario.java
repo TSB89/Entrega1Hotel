@@ -29,7 +29,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
             cpf = input.nextLine();
             if (cpf.matches("\\d{11}")) {
                 if (cpfJaCadastrado(cpf)) {
-                    System.out.println("\nCpf já cadastrado, insira outro cpf.");
+                    System.out.println("\nCPF já cadastrado, insira outro CPF.");
                 }
                 else {
                     break;
@@ -43,11 +43,11 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
         boolean entradaValida = false;
         String cargo = "";
         while (!entradaValida) {
-            System.out.println("\nDigite o número referente ao cargo do funcionário:\n" +
-                    "\n1) Gerente." +
-                    "\n2) Chefia." +
-                    "\n3) Assistente." +
-                    "\n4) Auxiliar.");
+            System.out.println("\nDigite o Número referente ao Cargo do funcionário:\n" +
+                    "\n1) Gerente" +
+                    "\n2) Chefia" +
+                    "\n3) Assistente" +
+                    "\n4) Auxiliar");
 
             if (!input.hasNextInt()) {
                 input.nextLine();
@@ -85,7 +85,7 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
         entradaValida = false;
         double salarioHora = 0.0;
         while (!entradaValida) {
-            System.out.println("\nInsira o salário por hora do funcionário:");
+            System.out.println("\nInsira o Salário por Hora do funcionário:");
             if (!input.hasNextDouble()) {
                 System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                 input.nextLine();
@@ -271,14 +271,14 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
             }
         }
         else  {
-            System.out.println("\nNenhum funcionário cadastrado para ser editado.");
+            System.out.println("\nNenhum funcionário Cadastrado para ser editado.");
         }
     }
 
     @Override
     public void visualizar() {
         if (funcionarios.isEmpty()) {
-            System.out.println("\nNenhum Funcionário Cadastrado.");
+            System.out.println("\nNenhum Funcionário Cadastrado!");
         }
         else {
             System.out.println("Funcionários Cadastrados:");
