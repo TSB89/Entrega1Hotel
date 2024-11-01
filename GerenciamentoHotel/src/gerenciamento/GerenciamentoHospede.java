@@ -188,10 +188,6 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
         }
     }
 
-    public List<Hospede> getHospedes(){
-        return this.hospedes;
-    }
-
     public void visualizarHistorico() {
         if (!hospedes.isEmpty()) {
             ArrayList<String>cpfsValidos = new ArrayList<>();
