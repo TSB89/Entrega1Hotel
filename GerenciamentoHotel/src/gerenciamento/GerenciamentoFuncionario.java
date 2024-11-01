@@ -288,10 +288,6 @@ public class GerenciamentoFuncionario implements GerenciamentoPadrao {
         }
     }
 
-    public List<Funcionario> getFuncionarios () {
-        return this.funcionarios;
-    }
-
     private boolean cpfJaCadastrado(String cpf) {
         if (!funcionarios.isEmpty()) {
             for (Funcionario funcionario:funcionarios) {

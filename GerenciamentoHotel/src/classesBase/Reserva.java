@@ -21,12 +21,11 @@ public class Reserva {
 		this.checkInRealizado = false;
 		
 	}
+
 	public LocalDate getEntrada() {
 		return entrada;
 	}
-	public void setEntrada(LocalDate entrada) {
-		this.entrada = entrada;
-	}
+
 	public LocalDate getSaida() {
 		return saida;
 	}
@@ -36,22 +35,17 @@ public class Reserva {
 	public String getTipoDoQuarto() {
 		return tipoDoQuarto;
 	}
-	public void setTipoDoQuarto(String tipoDoQuarto) {
-		this.tipoDoQuarto = tipoDoQuarto;
-	}
+
 	public int getQuantidadeDeHospedes() {
 		return quantidadeDeHospedes;
 	}
+
 	public String getHospedeCpf() {
         return cpfHospede;
     }
 
 	public int getNumeroQuarto() {
 		return numeroQuarto;
-	}
-
-	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
-		this.quantidadeDeHospedes = quantidadeDeHospedes;
 	}
 
 	public boolean isCheckInRealizado() {
