@@ -2,7 +2,6 @@ package classesBase;
 
 import java.time.LocalDate;
 
-//vai ter uma associação com a classe Quarto
 public class Reserva {
 
     private LocalDate entrada;
@@ -11,6 +10,7 @@ public class Reserva {
     private int quantidadeDeHospedes;
     private String cpfHospede;
 	private int numeroQuarto;
+	private boolean checkInRealizado;
 	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes, String cpfHospede,int numeroQuarto) {
 		this.entrada = entrada;
 		this.saida = saida;
@@ -18,6 +18,7 @@ public class Reserva {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
 		this.cpfHospede = cpfHospede;
 		this.numeroQuarto = numeroQuarto;
+		this.checkInRealizado = false;
 		
 	}
 	public LocalDate getEntrada() {
@@ -52,8 +53,21 @@ public class Reserva {
 	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
 	}
-	
-    
-    
 
+	public boolean isCheckInRealizado() {
+		return checkInRealizado;
+	}
+
+	public void setCheckInRealizado(boolean checkInRealizado) {
+		this.checkInRealizado = checkInRealizado;
+	}
+
+	@Override
+	public String toString() {
+		return "Entrada: " + entrada + "\n" +
+				"Saida: " + saida + "\n" +
+				"Tipo Do Quarto: " + tipoDoQuarto + "\n" +
+				"Quantidade De Hospedes: " + quantidadeDeHospedes + "\n" +
+				"Numero Do Quarto: " + numeroQuarto + "\n";
+	}
 }

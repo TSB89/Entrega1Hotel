@@ -19,6 +19,7 @@ public class Hospede extends Pessoa {
         this.dataDeNascimento = dataDeNascimento;
         this.endereco = endereco;
         this.historico = new ArrayList<>();
+        this.reserva = null;
     }
 
     public String getContato() {
