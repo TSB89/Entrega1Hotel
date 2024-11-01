@@ -103,6 +103,6 @@ public class Main {
                 hotel.checkOut();
             }
         }
-        System.out.println("\nObrigado por usar nosso sistema!!!");
+        System.out.println("\nObrigado por Utilizar nosso Sistema!!!");
     }
 }

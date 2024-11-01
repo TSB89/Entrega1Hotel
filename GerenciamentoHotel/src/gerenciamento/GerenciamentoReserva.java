@@ -35,7 +35,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
         if (!hospedes.isEmpty() && !quartos.isEmpty()) {
             String cpf = "";
             ArrayList<String> cpfsValidos = new ArrayList<>();
-            System.out.println("\nHospedes cadastrados:");
+            System.out.println("\nHóspedes Cadastrados:");
             for (Hospede hospede : hospedes) {
                 System.out.println(hospede);
                 cpfsValidos.add(hospede.getCpf());
@@ -153,7 +153,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 }
             }
 
-            //this.numeroDoQuarto = numeroQuarto;
+            
             numeroQuartosReservados.add(numeroQuarto);
             numeroQuartosReservadosCheckIn.add(numeroQuarto);
             Reserva reserva = new Reserva(dataEntrada, dataSaida, tipoQuarto, quantidadeHospedes, cpf, numeroQuarto);

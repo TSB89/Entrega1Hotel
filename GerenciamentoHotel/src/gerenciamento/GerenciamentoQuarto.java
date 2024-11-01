@@ -96,7 +96,7 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
         entradaValida = false;
 
         while (!entradaValida) {
-            System.out.println("\nInsira o preço da diária do quarto:");
+            System.out.println("\nInsira o Preço da diária do quarto:");
             String precoDiariaInput = scanner.nextLine();
             if (precoDiariaInput.isEmpty()) {
                 System.out.println("\nImpossível cadastrar quarto. Preço da diária não foi informado.");
@@ -137,7 +137,7 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
             }
         }
         else {
-            System.out.println("\nNenhum Quarto Cadastrado.");
+            System.out.println("\nNenhum Quarto Cadastrado!");
         }
     }
 
@@ -225,7 +225,7 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
             }
         }
         else  {
-            System.out.println("\nNenhum quarto cadastrado para atualizar.");
+            System.out.println("\nNenhum Quarto Cadastrado para Atualizar!");
         }
     }
 
