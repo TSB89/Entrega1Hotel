@@ -94,8 +94,8 @@ public class Hotel {
                 boolean entradaValida = false;
                 int numero = -1;
                 while (!entradaValida) {
-                    System.out.println("\nInsira o numero do quarto que vai realizar o Check-In:");
-                    System.out.println("\nNumeros dos quartos:");
+                    System.out.println("\nInsira o Número do Quarto que Deseja realizar o Check-In:");
+                    System.out.println("\nNúmeros dos Quartos:");
                     for (int num : numerosQuartosChaeckIn) {
                         System.out.printf("\nQuarto (Nº%d).", num);
                     }
@@ -108,7 +108,7 @@ public class Hotel {
                     numero = input.nextInt();
                     input.nextLine();
                     if (!numerosQuartosChaeckIn.contains(numero)) {
-                        System.out.println("\nNúmero de quarto não existe!");
+                        System.out.println("\nNúmero de Quarto não existe!");
                         continue;
                     }
                     entradaValida = true;
@@ -117,11 +117,11 @@ public class Hotel {
                 checkInRealizado = true;
             }
             else {
-                System.out.println("\nNão existem reservas para realizar Check-In");
+                System.out.println("\nNão Existem Reservas para Realizar Check-In");
             }
         }
         else {
-            System.out.println("\nNão existem reservas para realizar Check-In");
+            System.out.println("\nNão Existem Reservas para Realizar Check-In");
         }
     }
 
@@ -132,8 +132,8 @@ public class Hotel {
             int numero = -1;
             boolean entradaValida = false;
             while (!entradaValida) {
-                System.out.println("\nInsira o numero do quarto que vai realizar o Check-Out:");
-                System.out.println("\nNumeros dos quartos:");
+                System.out.println("\nInsira o NÚmero do Quarto que vai realizar o Check-Out:");
+                System.out.println("\nNumeros dos Quartos:");
                 for (int num : numerosQuarto) {
                     System.out.printf("\nQuarto (Nº%d).", num);
                 }
@@ -147,7 +147,7 @@ public class Hotel {
                 numero = input.nextInt();
                 input.nextLine();
                 if (!numerosQuarto.contains(numero)) {
-                    System.out.println("\nNúmero de quarto não existe!");
+                    System.out.println("\nNúmero de Quarto não existe!");
                     continue;
                 }
                 entradaValida = true;
