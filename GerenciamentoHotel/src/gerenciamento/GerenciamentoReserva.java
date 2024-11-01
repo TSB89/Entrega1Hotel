@@ -42,10 +42,10 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             }
             boolean entradaValida = false;
             while (!entradaValida) {
-                System.out.println("\nInsira o cpf do hospede que deseja criar a reserva:");
+                System.out.println("\nInsira o CPF do Hóspede que deseja Criar a Reserva:");
                 cpf = scanner.nextLine();
                 if (!cpfsValidos.contains(cpf)) {
-                    System.out.println("\nInsira um cpf válido.");
+                    System.out.println("\nInsira um CPF Válido!");
                     continue;
                 }
                 entradaValida = true;
@@ -72,7 +72,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
 
                     if (!scanner.hasNextInt()) {
                         scanner.nextLine();
-                        System.out.println("\nEntrada inválida, insira um número inteiro.");
+                        System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                         continue;
                     }
 
@@ -119,15 +119,15 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                     for (int numero : numerosDisponiveis) {
                         System.out.printf("\nQuarto (Nº%d).", numero);
                     }
-                    System.out.println("\nInsira o número do quarto de " + tipoQuarto + " que deseja reservar:");
+                    System.out.println("\nInsira o Número do Quarto de " + tipoQuarto + " que deseja reservar:");
                     if (!scanner.hasNextInt()) {
                         scanner.nextLine();
-                        System.out.println("\nEntrada inválida, insira um número inteiro.");
+                        System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                     } else {
                         numeroQuarto = scanner.nextInt();
                         scanner.nextLine();
                         if (!numerosDisponiveis.contains(numeroQuarto)) {
-                            System.out.println("\nNão existem quartos com esse número.");
+                            System.out.println("\nNão existem Quartos com esse Número.");
                             continue;
                         }
                         entradaValida = true;
@@ -135,17 +135,17 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 }
 
                 if (!quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida)) {
-                    System.out.println("\nQuarto não está disponivel nessa data, troque o quarto ou escolha outra data.");
+                    System.out.println("\nQuarto não está Disponivel nessa Data, Troque o Quarto ou Escolha outra Data.");
                 }
             } while (!quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida));
 
             boolean valido = false;
             int quantidadeHospedes = 0;
             while (!valido) {
-                System.out.println("\nDigite a quantidade de hóspedes:");
+                System.out.println("\nDigite a Quantidade de Hóspedes:");
                 if (!scanner.hasNextInt()) {
                     scanner.nextLine();
-                    System.out.println("\nEntrada inválida, insira um número inteiro.");
+                    System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                 } else {
                     quantidadeHospedes = scanner.nextInt();
                     scanner.nextLine();
@@ -163,13 +163,13 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                     hospede1.setReserva(reserva);
                 }
             }
-            System.out.println("\nReserva criada com sucesso para o hóspede: " + hospede.getNome());
+            System.out.println("\nReserva Criada com Sucesso para o Hóspede: " + hospede.getNome());
         }
         else if (hospedes.isEmpty()){
-            System.out.println("\nNenhum hóspede cadastrado para criar reserva.");
+            System.out.println("\nNenhum Hóspede Cadastrado para Criar Reserva.");
         }
         else if (quartos.isEmpty()) {
-            System.out.println("\nNenhum quarto cadastrado para criar reserva.");
+            System.out.println("\nNenhum Quarto Cadastrado para Criar Reserva.");
         }
     }
 
@@ -185,10 +185,10 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
             }
             boolean entradaValida = false;
             while (!entradaValida) {
-                System.out.println("\nInsira o cpf do hospede que deseja cancelar a reserva:");
+                System.out.println("\nInsira o CPF do Hóspede que deseja Cancelar a Reserva:");
                 cpf = scanner.nextLine();
                 if (!cpfsValidos.contains(cpf)) {
-                    System.out.println("\nInsira um cpf válido.");
+                    System.out.println("\nInsira um CPF Válido!");
                     continue;
                 }
                 entradaValida = true;
@@ -199,21 +199,21 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                     if (!reserva.isCheckInRealizado()) {
                         this.numeroQuartosReservados.remove(Integer.valueOf(reserva.getNumeroQuarto()));
                         reservas.remove(reserva);
-                        System.out.println("\nReserva cancelada com sucesso.");
+                        System.out.println("\nReserva Cancelada com Sucesso!");
                         cancelada = true;
                         break;
                     }
                 }
             }
             if (!cancelada) {
-                System.out.println("\nHóspede não possui nenhuma reserva para cancelar.");
+                System.out.println("\nHóspede não Possui nenhuma Reserva para Cancelar.");
             }
         }
         else if (hospedes.isEmpty()){
-            System.out.println("\nNenhum hóspede cadastrado para cancelar reserva.");
+            System.out.println("\nNenhum Hóspede Cadastrado para Cancelar Reserva.");
         }
         else if (reservas.isEmpty()) {
-            System.out.println("\nNenhuma reserva foi feita para ser cancelada.");
+            System.out.println("\nNenhuma Reserva foi feita para ser Cancelada.");
         }
     }
 
@@ -236,7 +236,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
 
                 if (!scanner.hasNextInt()) {
                     scanner.nextLine();
-                    System.out.println("\nEntrada inválida, insira um número inteiro.");
+                    System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                     continue;
                 }
 
@@ -263,7 +263,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                     }
                 }
                 if (!existe) {
-                    System.out.println("\nNão existem quartos desse tipo cadastrados! Escolha outro tipo de quarto.");
+                    System.out.println("\nNão existem Quartos desse tipo Cadastrados! Escolha outro tipo de Quarto.");
                     continue;
                 }
                 tipoValido = true;
@@ -282,31 +282,31 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 for (int numero : numerosDisponiveis) {
                     System.out.printf("\nQuarto (Nº%d).", numero);
                 }
-                System.out.println("\nInsira o número do quarto de " + tipoQuarto + ":");
+                System.out.println("\nInsira o Número do Quarto de " + tipoQuarto + ":");
                 if (!scanner.hasNextInt()) {
                     scanner.nextLine();
-                    System.out.println("\nEntrada inválida, insira um número inteiro.");
+                    System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
                 } else {
                     numeroQuarto = scanner.nextInt();
                     scanner.nextLine();
                     if (!numerosDisponiveis.contains(numeroQuarto)) {
-                        System.out.println("\nNão existem quartos com esse número.");
+                        System.out.println("\nNão Existem Quartos com esse Número.");
                         continue;
                     }
                     entradaValida = true;
                 }
             }
             if (reservas.isEmpty()) {
-                System.out.println("\nQuarto disponível para reserva.");
+                System.out.println("\nQuarto Disponível para Reserva");
             }
             else if (quartoDisponivel(tipoQuarto, numeroQuarto, dataEntrada, dataSaida)) {
-                System.out.println("\nQuarto disponível para reserva.");
+                System.out.println("\nQuarto Disponível para Reserva.");
             } else {
-                System.out.println("\nNenhum quarto disponível para o tipo e datas selecionados.");
+                System.out.println("\nNenhum Quarto Disponível para o Tipo e Datas selecionados.");
             }
         }
         else {
-            System.out.println("\nNenhum quarto foi criado até o momento para ser reservado.");
+            System.out.println("\nNenhum Quarto foi Criado até o Momento para ser Reservado.");
         }
     }
 
@@ -329,7 +329,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 this.numeroQuartosReservados.remove(Integer.valueOf(numeroQuarto));
                 reserva.setCheckInRealizado(false);
                 reservas.remove(reserva);
-                System.out.println("\nCheck-Out realizado com sucesso!");
+                System.out.println("\nCheck-Out Realizado com Sucesso!");
                 break;
             }
         }
@@ -353,7 +353,7 @@ public class GerenciamentoReserva implements GerenciamentoPadrao {
                 }
                 reserva.setCheckInRealizado(true);
                 this.numeroQuartosReservadosCheckIn.remove(Integer.valueOf(numeroQuarto));
-                System.out.println("\nCheck-In realizado com sucesso!");
+                System.out.println("\nCheck-In Realizado com Sucesso!");
                 break;
             }
         }

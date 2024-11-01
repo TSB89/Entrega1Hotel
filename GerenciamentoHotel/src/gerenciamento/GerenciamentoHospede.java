@@ -171,7 +171,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             }
         }
         else {
-            System.out.println("\nNenhum hóspede cadastrado para ser editado.");
+            System.out.println("\nNenhum Hóspede Cadastrado para ser Editado.");
         }
     }
 
@@ -184,7 +184,7 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
             }
         }
         else {
-            System.out.println("\nNenhum hóspede cadastrado.");
+            System.out.println("\nNenhum Hóspede Cadastrado.");
         }
     }
 
