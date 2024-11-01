@@ -2,7 +2,6 @@ package classesBase;
 
 import java.time.LocalDate;
 
-//vai ter uma associação com a classe Quarto
 public class Reserva {
 
     private LocalDate entrada;
@@ -65,13 +64,10 @@ public class Reserva {
 
 	@Override
 	public String toString() {
-		return "Reserva{" +
-				"cpfHospede='" + cpfHospede + '\'' +
-				", entrada=" + entrada +
-				", saida=" + saida +
-				", tipoDoQuarto='" + tipoDoQuarto + '\'' +
-				", quantidadeDeHospedes=" + quantidadeDeHospedes +
-				", numeroQuarto=" + numeroQuarto +
-				'}';
+		return "Entrada: " + entrada + "\n" +
+				"Saida: " + saida + "\n" +
+				"Tipo Do Quarto: " + tipoDoQuarto + "\n" +
+				"Quantidade De Hospedes: " + quantidadeDeHospedes + "\n" +
+				"Numero Do Quarto: " + numeroQuarto + "\n";
 	}
 }
