@@ -3,7 +3,6 @@ package gerenciamento;
 import classesBase.Funcionario;
 import classesBase.Hospede;
 import classesBase.Quarto;
-import classesBase.Reserva;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +17,22 @@ public class Hotel {
     private List<Hospede> hospedes;
     private List<Funcionario> funcionarios;
     private List<Quarto> quartos;
+    private List<Integer> numerosQuartosChaeckIn;
     private List<Integer> numerosQuarto;
+    private boolean checkInRealizado;
     private Scanner input = new Scanner(System.in);
 
     public Hotel() {
         quartos = new ArrayList<>();
         hospedes = new ArrayList<>();
         funcionarios = new ArrayList<>();
+        numerosQuartosChaeckIn = new ArrayList<>();
         numerosQuarto = new ArrayList<>();
-        gerenciamentoReserva = new GerenciamentoReserva(quartos,hospedes);
+        gerenciamentoReserva = new GerenciamentoReserva(quartos, hospedes);
         gerenciamentoHospede = new GerenciamentoHospede(hospedes);
         gerenciamentoFuncionario = new GerenciamentoFuncionario(funcionarios);
         gerenciamentoQuarto = new GerenciamentoQuarto(quartos);
+        checkInRealizado = false;
     }
 
     public void cadastrarQuarto() {
@@ -86,37 +89,80 @@ public class Hotel {
 
     public void checkIn() {
         if (!gerenciamentoReserva.getReservas().isEmpty()) {
-            System.out.println("\nInsira o numero do quarto que vai realizar o Check-In:");
-            System.out.println("\nNumeros dos quartos:");
-            numerosQuarto = gerenciamentoReserva.getNumeroQuartosReservados();
-            for (int num:numerosQuarto) {
-                System.out.printf("\nQuarto (Nº%d).", num);
+            numerosQuartosChaeckIn = gerenciamentoReserva.getNumeroQuartosReservadosCheckIn();
+            if (!numerosQuartosChaeckIn.isEmpty()) {
+                boolean entradaValida = false;
+                int numero = -1;
+                while (!entradaValida) {
+                    System.out.println("\nInsira o numero do quarto que vai realizar o Check-In:");
+                    System.out.println("\nNumeros dos quartos:");
+                    for (int num : numerosQuartosChaeckIn) {
+                        System.out.printf("\nQuarto (Nº%d).", num);
+                    }
+                    System.out.println();
+                    if (!input.hasNextInt()) {
+                        System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
+                        input.nextLine();
+                        continue;
+                    }
+                    numero = input.nextInt();
+                    input.nextLine();
+                    if (!numerosQuartosChaeckIn.contains(numero)) {
+                        System.out.println("\nNúmero de quarto não existe!");
+                        continue;
+                    }
+                    entradaValida = true;
+                }
+                gerenciamentoReserva.ocuparQuarto(numero);
+                checkInRealizado = true;
             }
-            System.out.println();
-            int numero = input.nextInt();
-            input.nextLine();
-            gerenciamentoReserva.ocuparQuarto(numero);
+            else {
+                System.out.println("\nNão existem reservas para realizar Check-In");
+            }
         }
         else {
             System.out.println("\nNão existem reservas para realizar Check-In");
         }
     }
 
+    //if (!gerenciamentoReserva.getReservas().isEmpty())
     public void checkOut() {
-        if (!gerenciamentoReserva.getReservas().isEmpty()) {
-            System.out.println("\nInsira o numero do quarto que vai realizar o Check-Out:");
-            System.out.println("\nNumeros dos quartos:");
+        if (checkInRealizado) {
             numerosQuarto = gerenciamentoReserva.getNumeroQuartosReservados();
-            for (int num:numerosQuarto) {
-                System.out.printf("\nQuarto (Nº%d).", num);
+            int numero = -1;
+            boolean entradaValida = false;
+            while (!entradaValida) {
+                System.out.println("\nInsira o numero do quarto que vai realizar o Check-Out:");
+                System.out.println("\nNumeros dos quartos:");
+                for (int num : numerosQuarto) {
+                    System.out.printf("\nQuarto (Nº%d).", num);
+                }
+                System.out.println();
+                if (!input.hasNextInt()) {
+                    System.out.println("\nEntrada Inválida! Insira um Número Inteiro.");
+                    input.nextLine();
+                    continue;
+                }
+
+                numero = input.nextInt();
+                input.nextLine();
+                if (!numerosQuarto.contains(numero)) {
+                    System.out.println("\nNúmero de quarto não existe!");
+                    continue;
+                }
+                entradaValida = true;
             }
-            System.out.println();
-            int numero = input.nextInt();
-            input.nextLine();
+            if (numerosQuarto.size() == 1) {
+                checkInRealizado = false;
+            }
             gerenciamentoReserva.liberarQuarto(numero);
+
         }
-        else  {
+        else if (gerenciamentoReserva.getReservas().isEmpty()) {
             System.out.println("\nNão existem reservas para realizar Check-Out");
+        }
+        else if (!checkInRealizado) {
+            System.out.println("\nNão foi realizado nenhum Check-In");
         }
     }
 }

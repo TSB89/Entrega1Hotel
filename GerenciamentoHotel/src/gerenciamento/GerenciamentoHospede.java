@@ -76,105 +76,115 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
 
     @Override
     public void editar() {
-        ArrayList<String>cpfsValidos = new ArrayList<>();
-        System.out.println("\nHóspedes cadastrados:");
-        for (Hospede hospede:hospedes) {
-            System.out.println(hospede);
-            cpfsValidos.add(hospede.getCpf());
-        }
-        boolean entradaValida = false;
-        while (!entradaValida) {
-            System.out.println("\nInsira o CPF do Hóspede que deseja alterar as informações:");
-            String cpf = input.nextLine();
-            if (!cpfsValidos.contains(cpf)) {
-                System.out.println("\nInsira um CPF válido!");
-                continue;
+        if (!hospedes.isEmpty()) {
+            ArrayList<String>cpfsValidos = new ArrayList<>();
+            System.out.println("\nHóspedes cadastrados:");
+            for (Hospede hospede:hospedes) {
+                System.out.println(hospede);
+                cpfsValidos.add(hospede.getCpf());
             }
-            entradaValida = true;
-            for (int i = 0;i < hospedes.size();i++) {
-                if (hospedes.get(i).getCpf().equals(cpf)) {
-                    int opcao = 0;
-                    while (opcao != 6) {
-                        System.out.println("\nDigite o número referente a opção que deseja realizar:" +
-                                "\n1) Alterar Nome." +
-                                "\n2) Alterar CPF." +
-                                "\n3) Alterar Data de Nascimento." +
-                                "\n4) Alterar Endereço." +
-                                "\n5) Alterar Contato." +
-                                "\n6) Sair do Menu de Alteração de Dados.");
+            boolean entradaValida = false;
+            while (!entradaValida) {
+                System.out.println("\nInsira o CPF do Hóspede que deseja alterar as informações:");
+                String cpf = input.nextLine();
+                if (!cpfsValidos.contains(cpf)) {
+                    System.out.println("\nInsira um CPF válido!");
+                    continue;
+                }
+                entradaValida = true;
+                for (int i = 0;i < hospedes.size();i++) {
+                    if (hospedes.get(i).getCpf().equals(cpf)) {
+                        int opcao = 0;
+                        while (opcao != 6) {
+                            System.out.println("\nDigite o número referente a opção que deseja realizar:" +
+                                    "\n1) Alterar Nome." +
+                                    "\n2) Alterar CPF." +
+                                    "\n3) Alterar Data de Nascimento." +
+                                    "\n4) Alterar Endereço." +
+                                    "\n5) Alterar Contato." +
+                                    "\n6) Sair do Menu de Alteração de Dados.");
 
-                        if (!input.hasNextInt()) {
+                            if (!input.hasNextInt()) {
+                                input.nextLine();
+                                System.out.println("\nEntrada inválida, insira um número inteiro!");
+                                continue;
+                            }
+
+                            opcao = input.nextInt();
                             input.nextLine();
-                            System.out.println("\nEntrada inválida, insira um número inteiro!");
-                            continue;
-                        }
 
-                        opcao = input.nextInt();
-                        input.nextLine();
-
-                        if (opcao < 1 || opcao > 6) {
-                            System.out.println("\nOpção inválida. Por favor, escolha entre 1, 2, 3, 4, 5 ou 6.");
-                        }
-
-                        else if (opcao == 1) {
-                            System.out.println("\nInsira o novo nome do Hóspede:");
-                            String novoNome = input.nextLine();
-                            hospedes.get(i).setNome(novoNome);
-                        }
-
-                        else if (opcao == 2) {
-                            String novoCpf;
-                            while (true) {
-                                System.out.println("\nInsira o novo CPF do Hóspede (11 dígitos):");
-                                novoCpf = input.nextLine();
-                                if (novoCpf.matches("\\d{11}")) {
-                                    break;
-                                } else {
-                                    System.out.println("\nPor favor, insira um CPF válido com 11 dígitos.");
-                                }
+                            if (opcao < 1 || opcao > 6) {
+                                System.out.println("\nOpção inválida. Por favor, escolha entre 1, 2, 3, 4, 5 ou 6.");
                             }
-                            hospedes.get(i).setCpf(novoCpf);
-                        }
 
-                        else if (opcao == 3) {
-                            LocalDate novaDataNascimento = null;
-                            boolean dataValida = false;
-                            while (!dataValida) {
-                                try {
-                                    System.out.println("\nInsira a nova Data de Nascimento do Hóspede (DD/MM/AAAA):");
-                                    String data = input.nextLine();
-                                    novaDataNascimento = LocalDate.parse(data,formatarData);
-                                    dataValida = true;
-                                } catch (DateTimeParseException e) {
-                                    System.out.println("\nInsira a Data de Nascimento de forma correta (DD/MM/AAAA)");
-                                }
+                            else if (opcao == 1) {
+                                System.out.println("\nInsira o novo nome do Hóspede:");
+                                String novoNome = input.nextLine();
+                                hospedes.get(i).setNome(novoNome);
                             }
-                            hospedes.get(i).setDataDeNascimento(novaDataNascimento);
-                        }
 
-                        else if (opcao == 4) {
-                            System.out.println("\nInsira o Novo Endereço do Hóspede (Rua):");
-                            String novoEndereco = input.nextLine();
-                            hospedes.get(i).setEndereco(novoEndereco);
-                        }
+                            else if (opcao == 2) {
+                                String novoCpf;
+                                while (true) {
+                                    System.out.println("\nInsira o novo CPF do Hóspede (11 dígitos):");
+                                    novoCpf = input.nextLine();
+                                    if (novoCpf.matches("\\d{11}")) {
+                                        break;
+                                    } else {
+                                        System.out.println("\nPor favor, insira um CPF válido com 11 dígitos.");
+                                    }
+                                }
+                                hospedes.get(i).setCpf(novoCpf);
+                            }
 
-                        else if (opcao== 5) {
-                            System.out.println("\nInsira o Novo Número de contato do Hóspede:");
-                            String novoContato = input.nextLine();
-                            hospedes.get(i).setContato(novoContato);
+                            else if (opcao == 3) {
+                                LocalDate novaDataNascimento = null;
+                                boolean dataValida = false;
+                                while (!dataValida) {
+                                    try {
+                                        System.out.println("\nInsira a nova Data de Nascimento do Hóspede (DD/MM/AAAA):");
+                                        String data = input.nextLine();
+                                        novaDataNascimento = LocalDate.parse(data,formatarData);
+                                        dataValida = true;
+                                    } catch (DateTimeParseException e) {
+                                        System.out.println("\nInsira a Data de Nascimento de forma correta (DD/MM/AAAA)");
+                                    }
+                                }
+                                hospedes.get(i).setDataDeNascimento(novaDataNascimento);
+                            }
+
+                            else if (opcao == 4) {
+                                System.out.println("\nInsira o Novo Endereço do Hóspede (Rua):");
+                                String novoEndereco = input.nextLine();
+                                hospedes.get(i).setEndereco(novoEndereco);
+                            }
+
+                            else if (opcao== 5) {
+                                System.out.println("\nInsira o Novo Número de contato do Hóspede:");
+                                String novoContato = input.nextLine();
+                                hospedes.get(i).setContato(novoContato);
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
             }
+        }
+        else {
+            System.out.println("\nNenhum hóspede cadastrado para ser editado.");
         }
     }
 
     @Override
     public void visualizar() {
-        System.out.println("\nHóspedes cadastrados:\n");
-        for (Hospede hospede:hospedes) {
-            System.out.println(hospede);
+        if (!hospedes.isEmpty()) {
+            System.out.println("\nHóspedes cadastrados:");
+            for (Hospede hospede:hospedes) {
+                System.out.println(hospede);
+            }
+        }
+        else {
+            System.out.println("\nNenhum hóspede cadastrado.");
         }
     }
 
@@ -183,42 +193,48 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
     }
 
     public void visualizarHistorico() {
-        ArrayList<String>cpfsValidos = new ArrayList<>();
-        System.out.println("\nHóspedes cadastrados:");
-        for (Hospede hospede:hospedes) {
-            System.out.println(hospede);
-            cpfsValidos.add(hospede.getCpf());
-        }
-        boolean entradaValida = false;
-        String cpf = "";
-        while (!entradaValida) {
-            System.out.println("\nInsira o CPF do Hóspede que deseja visualizar o histórico de estadias:");
-            cpf = input.nextLine();
-            if (!cpfsValidos.contains(cpf)) {
-                System.out.println("\nInsira um CPF válido!");
-                continue;
+        if (!hospedes.isEmpty()) {
+            ArrayList<String>cpfsValidos = new ArrayList<>();
+            System.out.println("\nHóspedes cadastrados:");
+            for (Hospede hospede:hospedes) {
+                System.out.println(hospede);
+                cpfsValidos.add(hospede.getCpf());
             }
-            entradaValida = true;
-        }
+            boolean entradaValida = false;
+            String cpf = "";
+            while (!entradaValida) {
+                System.out.println("\nInsira o CPF do Hóspede que deseja visualizar o histórico de estadias:");
+                cpf = input.nextLine();
+                if (!cpfsValidos.contains(cpf)) {
+                    System.out.println("\nInsira um CPF válido!");
+                    continue;
+                }
+                entradaValida = true;
+            }
 
-        for (Hospede hospede:hospedes) {
-            if (hospede.getCpf().equals(cpf)) {
-                if (hospede.getHistorico().isEmpty()) {
-                    System.out.println("\nHóspede não realizou nenhuma estadia no hotel até o momento!");
-                    break;
-                }
-                else {
-                    List<Reserva> historico = hospede.getHistorico();
-                    System.out.println("\nHistórico de estadia do hóspede:" + hospede.getNome());
-                    for (Reserva reserva:historico) {
-                        System.out.println("Data de Check-in:" + reserva.getEntrada());
-                        System.out.printf("Número do quarto: %d\n" +
-                                          "Tipo do quarto: %s\n",reserva.getNumeroQuarto(),reserva.getTipoDoQuarto());
-                        System.out.println("Data de Check-ou:" + reserva.getSaida() + "\n");
+            for (Hospede hospede:hospedes) {
+                if (hospede.getCpf().equals(cpf)) {
+                    if (hospede.getHistorico().isEmpty()) {
+                        System.out.println("\nHóspede não realizou nenhuma estadia no hotel até o momento!");
+                        break;
                     }
-                    break;
+                    else {
+                        List<Reserva> historico = hospede.getHistorico();
+                        System.out.println("\nHistórico de estadia do hóspede:" + hospede.getNome());
+                        System.out.println();
+                        for (Reserva reserva:historico) {
+                            System.out.println("Data de Check-In:" + reserva.getEntrada());
+                            System.out.printf("Número do quarto: %d\n" +
+                                              "Tipo do quarto: %s\n",reserva.getNumeroQuarto(),reserva.getTipoDoQuarto());
+                            System.out.println("Data de Check-Out:" + reserva.getSaida() + "\n");
+                        }
+                        break;
+                    }
                 }
             }
+        }
+        else {
+            System.out.println("\nNenhum hospede cadastrado.");
         }
     }
 

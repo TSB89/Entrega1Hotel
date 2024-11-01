@@ -130,9 +130,14 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
 
     @Override
     public void visualizar() {
-        System.out.println("\nQuartos cadastrados:\n");
-        for (Quarto quarto:quartos) {
-            System.out.println(quarto);
+        if (!quartos.isEmpty()) {
+            System.out.println("\nQuartos cadastrados:");
+            for (Quarto quarto:quartos) {
+                System.out.println(quarto);
+            }
+        }
+        else {
+            System.out.println("\nNenhum quarto cadastrado.");
         }
     }
 
@@ -154,68 +159,73 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
 
     @Override
     public void editar() {
-        ArrayList<Integer> numerosQuartos = new ArrayList<>();
-    	System.out.println("\nQuartos Cadastrados:");
-    	for (Quarto quarto : quartos) {
-            System.out.println(quarto);
-            numerosQuartos.add(quarto.getNumero());
-        }
-
-        boolean entradaValida = false;
-        int numero = 0;
-        while (!entradaValida) {
-            System.out.println("\nInsira o Número do Quarto que deseja alterar o Status:");
-
-            if (!scanner.hasNextInt()) {
-                scanner.nextLine();
-                System.out.println("\nEntrada inválida! Insira um Número Inteiro.");
-            }else {
-                numero = scanner.nextInt();
-                scanner.nextLine();
-                if (!numerosQuartos.contains(numero)) {
-                    System.out.println("\nNúmero de quarto não existe!");
-                    continue;
-                }
-                entradaValida = true;
+        if (!quartos.isEmpty()) {
+            ArrayList<Integer> numerosQuartos = new ArrayList<>();
+            System.out.println("\nQuartos Cadastrados:");
+            for (Quarto quarto : quartos) {
+                System.out.println(quarto);
+                numerosQuartos.add(quarto.getNumero());
             }
 
-        }
+            boolean entradaValida = false;
+            int numero = 0;
+            while (!entradaValida) {
+                System.out.println("\nInsira o Número do Quarto que deseja alterar o Status:");
 
-        entradaValida = false;
-        for (Quarto quarto : quartos) {
-            if (quarto.getNumero() == numero) {
-                int opcao = 0;
-                while (!entradaValida) {
-                    System.out.println("\nEscolha o novo Status do Quarto:" +
-                            "\n1) Disponível" +
-                            "\n2) Ocupado" +
-                            "\n3) Em manutenção");
-
-                    if (!scanner.hasNextInt()) {
-                        scanner.nextLine();
-                        System.out.println("\nEntrada inválida! Insira um Número Inteiro.");
+                if (!scanner.hasNextInt()) {
+                    scanner.nextLine();
+                    System.out.println("\nEntrada inválida! Insira um Número Inteiro.");
+                }else {
+                    numero = scanner.nextInt();
+                    scanner.nextLine();
+                    if (!numerosQuartos.contains(numero)) {
+                        System.out.println("\nNúmero de quarto não existe!");
                         continue;
                     }
-                    opcao = scanner.nextInt();
-                    scanner.nextLine();
+                    entradaValida = true;
+                }
 
-                    switch (opcao) {
-                        case 1 -> {
-                            quarto.setDisponivel(true);
-                            entradaValida = true;
+            }
+
+            entradaValida = false;
+            for (Quarto quarto : quartos) {
+                if (quarto.getNumero() == numero) {
+                    int opcao = 0;
+                    while (!entradaValida) {
+                        System.out.println("\nEscolha o novo Status do Quarto:" +
+                                "\n1) Disponível" +
+                                "\n2) Ocupado" +
+                                "\n3) Em manutenção");
+
+                        if (!scanner.hasNextInt()) {
+                            scanner.nextLine();
+                            System.out.println("\nEntrada inválida! Insira um Número Inteiro.");
+                            continue;
                         }
-                        case 2, 3 -> {
-                            quarto.setDisponivel(false);
-                            entradaValida = true;
-                        }
-                        default -> {
-                            System.out.println("\nOpção inválida. Por favor, escolha entre 1, 2 ou 3.");
+                        opcao = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (opcao) {
+                            case 1 -> {
+                                quarto.setDisponivel(true);
+                                entradaValida = true;
+                            }
+                            case 2, 3 -> {
+                                quarto.setDisponivel(false);
+                                entradaValida = true;
+                            }
+                            default -> {
+                                System.out.println("\nOpção inválida. Por favor, escolha entre 1, 2 ou 3.");
+                            }
                         }
                     }
+                    System.out.println("\nStatus do quarto atualizado com sucesso.");
+                    break;
                 }
-                System.out.println("\nStatus do quarto atualizado com sucesso.");
-                break;
             }
+        }
+        else  {
+            System.out.println("\nNenhum quarto cadastrado para atualizar.");
         }
     }
 

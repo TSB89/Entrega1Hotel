@@ -42,6 +42,6 @@ public class Quarto {
 
     @Override
     public String toString() {
-        return "\nQuarto: " + numero + "\nTipo: " + tipo + " \nCapacidade: " + capacidade + " \nPreço: R$ " + precoDiaria + " \nDisponível: " + (disponivel ? "Sim" : "Não");
+        return "\nQuarto: " + numero + "\nTipo: " + tipo + " \nCapacidade: " + capacidade + " \nPreço: R$ " + String.format("%.2f", precoDiaria) + " \nDisponível: " + (disponivel ? "Sim" : "Não");
     }
 }
