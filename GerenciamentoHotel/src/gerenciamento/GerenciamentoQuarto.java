@@ -141,22 +141,6 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
         }
     }
 
-    public void visualizarDisponivel () {
-        boolean existeDisponivel = false;
-        for (Quarto quarto : quartos) {
-            if (quarto.isDisponivel()) {
-                if (!existeDisponivel) {
-                    System.out.println("\nQuartos Disponíveis:");
-                    existeDisponivel = true;
-                }
-                System.out.println(quarto);
-            }
-        }
-        if (!existeDisponivel) {
-            System.out.println("\nNão Existem Quartos Disponíveis no Momento.");
-        }
-    }
-
     @Override
     public void editar() {
         if (!quartos.isEmpty()) {
@@ -227,9 +211,5 @@ public class GerenciamentoQuarto implements GerenciamentoPadrao {
         else  {
             System.out.println("\nNenhum Quarto Cadastrado para Atualizar!");
         }
-    }
-
-    private List<Quarto>getQuartos() {
-        return this.quartos;
     }
 }

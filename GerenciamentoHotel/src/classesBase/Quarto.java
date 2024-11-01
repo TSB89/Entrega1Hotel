@@ -28,10 +28,6 @@ public class Quarto {
         return capacidade;
     }
 
-    public double getPrecoDiaria() {
-        return precoDiaria;
-    }
-
     public void setDisponivel(boolean disponivel) {
     	this.disponivel = disponivel;
     }
