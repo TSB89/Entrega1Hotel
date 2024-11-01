@@ -221,11 +221,12 @@ public class GerenciamentoHospede implements GerenciamentoPadrao {
                     else {
                         List<Reserva> historico = hospede.getHistorico();
                         System.out.println("\nHistórico de estadia do hóspede:" + hospede.getNome());
+                        System.out.println();
                         for (Reserva reserva:historico) {
-                            System.out.println("Data de Check-in:" + reserva.getEntrada());
+                            System.out.println("Data de Check-In:" + reserva.getEntrada());
                             System.out.printf("Número do quarto: %d\n" +
                                               "Tipo do quarto: %s\n",reserva.getNumeroQuarto(),reserva.getTipoDoQuarto());
-                            System.out.println("Data de Check-ou:" + reserva.getSaida() + "\n");
+                            System.out.println("Data de Check-Out:" + reserva.getSaida() + "\n");
                         }
                         break;
                     }

@@ -11,6 +11,7 @@ public class Reserva {
     private int quantidadeDeHospedes;
     private String cpfHospede;
 	private int numeroQuarto;
+	private boolean checkInRealizado;
 	public Reserva(LocalDate entrada, LocalDate saida, String tipoDoQuarto, int quantidadeDeHospedes, String cpfHospede,int numeroQuarto) {
 		this.entrada = entrada;
 		this.saida = saida;
@@ -18,6 +19,7 @@ public class Reserva {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
 		this.cpfHospede = cpfHospede;
 		this.numeroQuarto = numeroQuarto;
+		this.checkInRealizado = false;
 		
 	}
 	public LocalDate getEntrada() {
@@ -51,6 +53,14 @@ public class Reserva {
 
 	public void setQuantidadeDeHospedes(int quantidadeDeHospedes) {
 		this.quantidadeDeHospedes = quantidadeDeHospedes;
+	}
+
+	public boolean isCheckInRealizado() {
+		return checkInRealizado;
+	}
+
+	public void setCheckInRealizado(boolean checkInRealizado) {
+		this.checkInRealizado = checkInRealizado;
 	}
 
 	@Override
